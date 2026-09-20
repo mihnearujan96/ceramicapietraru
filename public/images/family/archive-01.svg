@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#EFE4D4"/>
+  <rect x="80" y="100" width="640" height="720" rx="8" fill="#F5EFE5"/>
+  <rect x="120" y="140" width="560" height="520" fill="#D9CBB8"/>
+  <circle cx="400" cy="360" r="70" fill="#C4B29A"/>
+  <path d="M280 560c30-70 80-100 120-100s90 30 120 100" fill="#C4B29A"/>
+  <text x="400" y="720" text-anchor="middle" fill="#442F26" font-family="Georgia, serif" font-size="24" opacity=".55">TODO: fotografie de familie</text>
+  <text x="400" y="760" text-anchor="middle" fill="#442F26" font-family="Georgia, serif" font-size="18" opacity=".4">Arhivă · Generații</text>
+</svg>

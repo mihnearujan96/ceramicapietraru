@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbf8f2;
+  --foreground: #171513;
+  --clay: #b96f4b;
+  --terracotta: #c9825d;
+  --cream: #f5efe5;
+  --warm-white: #fbf8f2;
+  --brown: #442f26;
+  --olive: #696a4b;
+  --charcoal: #171513;
+  --border: rgba(68, 47, 38, 0.14);
+  --border-strong: rgba(68, 47, 38, 0.28);
+  --muted: rgba(23, 21, 19, 0.62);
+  --focus-ring: #b96f4b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-clay: var(--clay);
+  --color-terracotta: var(--terracotta);
+  --color-cream: var(--cream);
+  --color-warm-white: var(--warm-white);
+  --color-brown: var(--brown);
+  --color-olive: var(--olive);
+  --color-charcoal: var(--charcoal);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-fraunces);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+/* Ensure opacity modifiers work on brand tokens */
+@theme {
+  --color-clay: #b96f4b;
+  --color-terracotta: #c9825d;
+  --color-cream: #f5efe5;
+  --color-warm-white: #fbf8f2;
+  --color-brown: #442f26;
+  --color-olive: #696a4b;
+  --color-charcoal: #171513;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-manrope), system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--clay) 35%, transparent);
+    color: var(--charcoal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .container-site {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3.5rem);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .grain {
+    position: relative;
+  }
+
+  .grain::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .heading-display {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  .pottery-underline {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' fill='none'%3E%3Cpath d='M1 5.5c8-3 16-3 24 0s16 3 24 0 16-3 24 0 16 3 24 0 16-3 23 0' stroke='%23FBF8F2' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 8px;
+    padding-bottom: 0.2em;
+  }
+}

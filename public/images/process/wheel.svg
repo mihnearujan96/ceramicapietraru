@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#EAD9C6"/>
+  <ellipse cx="400" cy="420" rx="180" ry="40" fill="#442F26" opacity=".35"/>
+  <rect x="370" y="250" width="60" height="170" rx="8" fill="#442F26" opacity=".45"/>
+  <path d="M340 230c20-70 50-100 60-100s40 30 60 100c-30 20-70 20-120 0z" fill="#B96F4B"/>
+  <text x="400" y="540" text-anchor="middle" fill="#442F26" font-family="Georgia, serif" font-size="22" opacity=".55">TODO: roata olarului</text>
+</svg>

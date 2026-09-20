@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#F5EFE5"/>
+  <circle cx="400" cy="280" r="140" fill="#B96F4B"/>
+  <path d="M300 280c30-20 60-20 100 0s70 22 100 0" stroke="#FBF8F2" stroke-width="4"/>
+  <path d="M320 250l20-12 20 12 20-12 20 12 20-12 20 12" stroke="#FBF8F2" stroke-width="3" stroke-linecap="round"/>
+  <path d="M520 360c40 10 70 40 80 80" stroke="#442F26" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+  <text x="400" y="540" text-anchor="middle" fill="#442F26" font-family="Georgia, serif" font-size="22" opacity=".55">TODO: decorarea cu cornul</text>
+</svg>
