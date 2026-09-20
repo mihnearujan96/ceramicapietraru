@@ -58,20 +58,18 @@ export default function RootLayout({
             __html: JSON.stringify(localBusinessJsonLd),
           }}
         />
-        {SHOW_WIP ? (
+        <CartProvider>
+          {SHOW_WIP ? null : <Header />}
           <main id="main-content" className="flex-1">
             {children}
           </main>
-        ) : (
-          <CartProvider>
-            <Header />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer />
-            <CartDrawer />
-          </CartProvider>
-        )}
+          {SHOW_WIP ? null : (
+            <>
+              <Footer />
+              <CartDrawer />
+            </>
+          )}
+        </CartProvider>
       </body>
     </html>
   );
