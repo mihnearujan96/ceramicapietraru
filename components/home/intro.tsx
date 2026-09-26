@@ -7,7 +7,7 @@ const copy = getDictionary();
 
 export function Intro() {
   return (
-    <section className="bg-warm-white py-20 md:py-28" aria-labelledby="intro-title">
+    <section className="bg-cream py-20 md:bg-warm-white md:py-28" aria-labelledby="intro-title">
       <Container>
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-clay">

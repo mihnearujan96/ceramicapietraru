@@ -46,12 +46,6 @@ export function Logo({
       decoding="async"
       {...(priority ? { fetchPriority: "high" as const } : {})}
       className={cn("block shrink-0 object-contain", className)}
-      style={{
-        height: `${height}px`,
-        width: `${width}px`,
-        maxWidth: "none",
-        maxHeight: "none",
-      }}
     />
   );
 
@@ -65,7 +59,6 @@ export function Logo({
       onClick={onClick}
       className="inline-flex shrink-0 items-center"
       aria-label={copy.brand.name}
-      style={{ height: `${height}px` }}
     >
       {image}
     </Link>

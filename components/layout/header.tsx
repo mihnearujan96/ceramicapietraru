@@ -47,50 +47,48 @@ export function Header() {
 
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,height,border-color] duration-300",
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-300",
           scrolled
             ? "border-b border-border bg-cream/85 backdrop-blur-md"
             : "border-b border-transparent bg-transparent",
         )}
       >
+        {/* Mobile: search | centered logo | cart + menu */}
         <Container
           className={cn(
-            "flex items-center justify-between gap-4 transition-[padding] duration-300",
-            scrolled ? "py-3" : "py-4",
+            "relative flex items-center justify-between lg:hidden",
+            scrolled ? "py-2.5" : "pb-3 pt-2.5",
           )}
         >
-          <Logo height={scrolled ? 120 : 160} priority />
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="relative z-10 inline-flex size-10 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
+            aria-label={copy.nav.search}
+          >
+            <Search className="size-5" />
+          </button>
 
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
-            {mainNavigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group relative text-sm text-foreground/80 transition-colors hover:text-foreground"
-              >
-                {copy.nav[item.labelKey]}
-                <span
-                  className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-clay transition-transform duration-300 group-hover:scale-x-100"
-                  aria-hidden
-                />
-              </Link>
-            ))}
-          </nav>
+          <div
+            className={cn(
+              "pointer-events-auto absolute left-1/2 z-0 -translate-x-1/2 transition-[top,transform] duration-300",
+              scrolled
+                ? "top-1/2 -translate-y-1/2 scale-[0.88]"
+                : "top-[1.15rem] translate-y-0 scale-100",
+            )}
+          >
+            <Logo
+              height={200}
+              priority
+              className="h-[5.75rem] w-auto max-w-[12.5rem]"
+            />
+          </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              className="inline-flex size-11 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
-              aria-label={copy.nav.search}
-            >
-              <Search className="size-5" />
-            </button>
-
+          <div className="relative z-10 flex items-center gap-0.5">
             <button
               type="button"
               onClick={openCart}
-              className="relative inline-flex size-11 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
+              className="relative inline-flex size-10 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
               aria-label={copy.nav.cart}
             >
               <ShoppingBag className="size-5" />
@@ -101,18 +99,9 @@ export function Header() {
               ) : null}
             </button>
 
-            <Button
-              href="/colectii"
-              variant="primary"
-              size="md"
-              className="hidden sm:inline-flex"
-            >
-              {copy.nav.shop}
-            </Button>
-
             <button
               type="button"
-              className="inline-flex size-11 items-center justify-center rounded-[12px] lg:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-[12px]"
               aria-label={menuOpen ? copy.nav.closeMenu : copy.nav.openMenu}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((prev) => !prev)}
@@ -143,6 +132,74 @@ export function Header() {
             </button>
           </div>
         </Container>
+
+        {/* Desktop */}
+        <Container
+          className={cn(
+            "hidden items-center justify-between gap-4 lg:flex",
+            scrolled ? "py-3" : "py-4",
+          )}
+        >
+          <Logo
+            height={scrolled ? 120 : 160}
+            priority
+            className={cn(
+              "w-auto max-w-none",
+              scrolled ? "h-[100px]" : "h-[128px]",
+            )}
+          />
+
+          <nav className="flex items-center gap-7" aria-label="Principal">
+            {mainNavigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group relative text-sm text-foreground/80 transition-colors hover:text-foreground"
+              >
+                {copy.nav[item.labelKey]}
+                <span
+                  className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-clay transition-transform duration-300 group-hover:scale-x-100"
+                  aria-hidden
+                />
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2 md:gap-3">
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="inline-flex size-11 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
+              aria-label={copy.nav.search}
+            >
+              <Search className="size-5" />
+            </button>
+
+            <button
+              type="button"
+              onClick={openCart}
+              className="relative inline-flex size-11 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
+              aria-label={copy.nav.cart}
+            >
+              <ShoppingBag className="size-5" />
+              {itemCount > 0 ? (
+                <span className="absolute right-1.5 top-1.5 inline-flex min-w-4 items-center justify-center rounded-full bg-clay px-1 text-[10px] font-semibold text-warm-white">
+                  {itemCount}
+                </span>
+              ) : null}
+            </button>
+
+            <Button
+              href="/colectii"
+              variant="primary"
+              size="md"
+              showArrow
+              className="rounded-[12px] px-5"
+            >
+              {copy.nav.shop}
+            </Button>
+          </div>
+        </Container>
       </header>
 
       <AnimatePresence>
@@ -156,7 +213,11 @@ export function Header() {
           >
             <Container className="flex h-full flex-col pb-10 pt-28">
               <div className="mb-8 flex items-center justify-between gap-4">
-                <Logo height={160} onClick={() => setMenuOpen(false)} />
+                <Logo
+                  height={160}
+                  onClick={() => setMenuOpen(false)}
+                  className="h-14 w-auto max-w-[9rem]"
+                />
                 <button
                   type="button"
                   onClick={() => setMenuOpen(false)}
