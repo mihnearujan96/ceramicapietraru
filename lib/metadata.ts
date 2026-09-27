@@ -5,7 +5,7 @@ import { absoluteUrl } from "@/lib/utils";
 const defaultTitle =
   "Ceramica Pietraru | Ceramică lucrată manual în Horezu";
 const defaultDescription =
-  "Descoperă Ceramica Pietraru, ceramică lucrată manual în Horezu, România, continuând tradiția unei familii de ceramiști de cinci generații.";
+  "Descoperă Ceramica Pietraru — ceramică lucrată manual în Horezu, România, în tradiția familiilor Mischiu și Pietraru.";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(SITE.url),

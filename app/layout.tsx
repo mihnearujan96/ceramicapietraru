@@ -6,7 +6,6 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { defaultMetadata } from "@/lib/metadata";
 import { SITE, CONTACT } from "@/lib/contact";
-import { SHOW_WIP } from "@/lib/site-flags";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -28,7 +27,7 @@ const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   name: SITE.name,
   description:
-    "Ceramică lucrată manual în Horezu, România — tradiție de cinci generații.",
+    "Ceramică lucrată manual în Horezu, România — tradiție transmisă din generație în generație.",
   url: SITE.url,
   image: `${SITE.url}/images/hero/building-exterior.jpg`,
   address: {
@@ -37,8 +36,9 @@ const localBusinessJsonLd = {
     addressCountry: "RO",
     streetAddress: CONTACT.address === "TODO" ? undefined : CONTACT.address,
   },
-  telephone: CONTACT.phone === "TODO" ? undefined : CONTACT.phone,
+  telephone: CONTACT.phones.map((phone) => phone.tel),
   email: CONTACT.email === "TODO" ? undefined : CONTACT.email,
+  openingHours: "Mo-Su 10:00-19:00",
 };
 
 export default function RootLayout({
@@ -59,16 +59,12 @@ export default function RootLayout({
           }}
         />
         <CartProvider>
-          {SHOW_WIP ? null : <Header />}
+          <Header />
           <main id="main-content" className="flex-1">
             {children}
           </main>
-          {SHOW_WIP ? null : (
-            <>
-              <Footer />
-              <CartDrawer />
-            </>
-          )}
+          <Footer />
+          <CartDrawer />
         </CartProvider>
       </body>
     </html>

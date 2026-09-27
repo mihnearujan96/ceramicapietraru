@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/container";
 import { DecorativeLine } from "@/components/ui/decorative-line";
 import { getDictionary } from "@/data/i18n/ro";
 import { CONTACT } from "@/lib/contact";
-import Image from "next/image";
+import type { ReactNode } from "react";
 
 const copy = getDictionary();
 
@@ -18,13 +18,14 @@ export function Atelier() {
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[16px]">
-              <Image
-                src="/images/workshop/pot-building.jpg"
-                alt="Atelierul Ceramica Pietraru — clădirea în formă de vas din Horezu"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+            <div className="relative aspect-[5/4] overflow-hidden rounded-[16px] border border-border bg-warm-white">
+              <iframe
+                src={CONTACT.mapEmbedUrl}
+                title="Ceramica Pietraru pe Google Maps"
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
               />
             </div>
           </Reveal>
@@ -53,8 +54,19 @@ export function Atelier() {
             <Reveal className="mt-10 grid gap-5 sm:grid-cols-2">
               <InfoBlock label={copy.atelier.address} value={CONTACT.address} />
               <InfoBlock label={copy.atelier.hours} value={CONTACT.hours} />
-              <InfoBlock label={copy.atelier.phone} value={CONTACT.phone} />
-              <InfoBlock label="Email" value={CONTACT.email} />
+              {CONTACT.phones.map((phone) => (
+                <InfoBlock key={phone.tel} label={copy.atelier.phone}>
+                  <a
+                    href={`tel:${phone.tel}`}
+                    className="mt-2 inline-block text-sm text-foreground underline-offset-4 transition-colors hover:text-clay hover:underline"
+                  >
+                    {phone.label}
+                  </a>
+                </InfoBlock>
+              ))}
+              {CONTACT.email !== "TODO" ? (
+                <InfoBlock label="Email" value={CONTACT.email} />
+              ) : null}
             </Reveal>
 
             <Reveal className="mt-8 flex flex-wrap gap-3">
@@ -78,11 +90,19 @@ export function Atelier() {
   );
 }
 
-function InfoBlock({ label, value }: { label: string; value: string }) {
+function InfoBlock({
+  label,
+  value,
+  children,
+}: {
+  label: string;
+  value?: string;
+  children?: ReactNode;
+}) {
   return (
     <div className="rounded-[12px] border border-border bg-warm-white/60 px-4 py-4">
       <p className="text-xs uppercase tracking-[0.18em] text-clay">{label}</p>
-      <p className="mt-2 text-sm text-foreground">{value}</p>
+      {children ?? <p className="mt-2 text-sm text-foreground">{value}</p>}
     </div>
   );
 }

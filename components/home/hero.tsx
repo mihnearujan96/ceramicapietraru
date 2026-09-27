@@ -43,7 +43,7 @@ export function Hero() {
       {/* ── Mobile ── */}
       <div className="relative flex min-h-[100svh] flex-col lg:hidden">
         {/* Copy band — clear of the pot */}
-        <Container className="relative z-20 shrink-0 pt-[7.75rem] pb-2">
+        <Container className="relative z-20 shrink-0 pt-[6.25rem] pb-1">
           <motion.p
             className="mb-2 text-center text-[0.68rem] font-medium uppercase tracking-[0.22em] text-clay"
             initial={false}
@@ -55,7 +55,7 @@ export function Hero() {
 
           <StaggerText
             text={`${copy.hero.line1}\n${copy.hero.line2}\n${copy.hero.line3}`}
-            className="heading-display text-center text-[clamp(2.5rem,10.5vw,3.4rem)] text-foreground"
+            className="heading-display text-center text-[clamp(2.35rem,10vw,3.25rem)] text-foreground"
             delay={0.14}
             stagger={0.1}
           />
@@ -71,7 +71,7 @@ export function Hero() {
           </motion.div>
 
           <motion.p
-            className="mx-auto mt-3 max-w-[17.5rem] text-center text-[0.9rem] leading-relaxed text-muted"
+            className="mx-auto mt-2.5 max-w-[17.5rem] text-center text-[0.88rem] leading-relaxed text-muted"
             initial={false}
             animate={
               entered
@@ -88,8 +88,8 @@ export function Hero() {
           </motion.p>
         </Container>
 
-        {/* Pot fills the rest; CTAs sit on it */}
-        <div className="relative z-10 mt-2 min-h-[16rem] flex-1 overflow-hidden">
+        {/* Pot fills to the bottom edge; CTAs sit on it */}
+        <div className="relative z-10 mt-1 min-h-0 flex-1 overflow-hidden">
           <motion.div
             className="pointer-events-none absolute inset-0"
             style={{ y: leavesY }}
@@ -115,12 +115,9 @@ export function Hero() {
             />
           </motion.div>
 
-          <motion.div
-            className="absolute inset-0"
-            style={{ y: imageY }}
-          >
+          <motion.div className="absolute inset-0" style={{ y: imageY }}>
             <div
-              className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-14 bg-gradient-to-b from-cream to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-12 bg-gradient-to-b from-cream to-transparent"
               aria-hidden
             />
             <Image
@@ -131,16 +128,16 @@ export function Hero() {
               priority
               unoptimized
               sizes="100vw"
-              className="absolute bottom-0 left-1/2 h-[118%] w-auto max-w-none -translate-x-1/2 object-bottom drop-shadow-[0_16px_32px_rgba(61,40,23,0.14)]"
+              className="absolute bottom-0 left-1/2 h-full min-h-full w-auto min-w-[115%] max-w-none -translate-x-1/2 object-cover object-bottom drop-shadow-[0_16px_32px_rgba(61,40,23,0.14)]"
             />
           </motion.div>
 
           <div className="absolute inset-x-0 bottom-0 z-20">
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#2a1c14]/65 via-[#2a1c14]/28 to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#2a1c14]/45 via-[#2a1c14]/12 to-transparent"
               aria-hidden
             />
-            <Container className="relative pb-[max(2.25rem,calc(env(safe-area-inset-bottom)+1.25rem))] pt-10">
+            <Container className="relative pb-[max(1.35rem,env(safe-area-inset-bottom))] pt-8">
               <motion.div
                 className="mx-auto grid w-full max-w-sm grid-cols-2 gap-2"
                 initial={false}
@@ -170,8 +167,8 @@ export function Hero() {
       </div>
 
       {/* ── Desktop ── */}
-      <Container className="relative z-10 hidden min-h-[100svh] lg:grid lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-8 lg:pb-16 lg:pt-36 xl:gap-10">
-        <div className="relative min-w-0 shrink-0">
+      <Container className="relative z-10 hidden min-h-[100svh] lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.05fr)] lg:items-center lg:gap-3 lg:pb-16 lg:pt-36 xl:gap-4">
+        <div className="relative z-20 min-w-0 shrink-0">
           <motion.p
             className="mb-5 text-xs font-medium uppercase tracking-[0.24em] text-clay"
             initial={false}
@@ -183,7 +180,7 @@ export function Hero() {
 
           <StaggerText
             text={`${copy.hero.line1}\n${copy.hero.line2}\n${copy.hero.line3}`}
-            className="heading-display text-[clamp(2.35rem,9vw,7.25rem)] text-foreground"
+            className="heading-display text-[clamp(2.5rem,5.8vw,5.75rem)] text-foreground"
             delay={0.2}
             stagger={0.1}
           />
@@ -223,17 +220,17 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="relative w-[118%] justify-self-end lg:-mr-[4%] xl:w-[126%] xl:-mr-[6%]"
+          className="relative z-10 w-[116%] justify-self-end lg:-mr-[4%] lg:-ml-[4%] xl:w-[122%] xl:-mr-[6%] xl:-ml-[5%]"
           style={{ y: imageY }}
         >
           <Image
             src="/images/hero/pot-building.png"
             alt="Atelierul Ceramica Pietraru — clădirea în formă de vas din Horezu"
-            width={1146}
-            height={750}
+            width={856}
+            height={683}
             priority
             unoptimized
-            sizes="58vw"
+            sizes="52vw"
             className="h-auto w-full object-contain object-bottom drop-shadow-[0_20px_36px_rgba(61,40,23,0.14)]"
           />
         </motion.div>

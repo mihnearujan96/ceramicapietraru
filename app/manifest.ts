@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Ceramica Pietraru",
     short_name: "Pietraru",
     description:
-      "Ceramică lucrată manual în Horezu, România — cinci generații de meșteșug.",
+      "Ceramică lucrată manual în Horezu, România — tradiție transmisă din generație în generație.",
     start_url: "/",
     display: "standalone",
     background_color: "#FBF8F2",

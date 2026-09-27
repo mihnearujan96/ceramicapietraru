@@ -47,17 +47,17 @@ export function Header() {
 
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-300",
+          "fixed inset-x-0 top-0 z-50 overflow-visible transition-[background-color,backdrop-filter,border-color,box-shadow] duration-300",
           scrolled
-            ? "border-b border-border bg-cream/85 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent",
+            ? "border-b border-border bg-cream/95 shadow-[0_1px_0_rgba(68,47,38,0.06)] backdrop-blur-md"
+            : "border-b border-transparent bg-cream/70 backdrop-blur-[2px] lg:bg-transparent lg:backdrop-blur-none",
         )}
       >
         {/* Mobile: search | centered logo | cart + menu */}
         <Container
           className={cn(
             "relative flex items-center justify-between lg:hidden",
-            scrolled ? "py-2.5" : "pb-3 pt-2.5",
+            scrolled ? "h-14" : "h-[5.5rem]",
           )}
         >
           <button
@@ -69,18 +69,16 @@ export function Header() {
             <Search className="size-5" />
           </button>
 
-          <div
-            className={cn(
-              "pointer-events-auto absolute left-1/2 z-0 -translate-x-1/2 transition-[top,transform] duration-300",
-              scrolled
-                ? "top-1/2 -translate-y-1/2 scale-[0.88]"
-                : "top-[1.15rem] translate-y-0 scale-100",
-            )}
-          >
+          <div className="pointer-events-auto absolute inset-y-0 left-1/2 z-0 flex -translate-x-1/2 items-center">
             <Logo
-              height={200}
+              height={scrolled ? 140 : 200}
               priority
-              className="h-[5.75rem] w-auto max-w-[12.5rem]"
+              className={cn(
+                "w-auto transition-[height,max-width] duration-300",
+                scrolled
+                  ? "h-12 max-w-[8.25rem]"
+                  : "h-[5rem] max-w-[11rem]",
+              )}
             />
           </div>
 

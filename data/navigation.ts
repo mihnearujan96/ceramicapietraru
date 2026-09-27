@@ -7,7 +7,6 @@ export const mainNavigation: NavItem[] = [
   { href: "/", labelKey: "home" },
   { href: "/poveste", labelKey: "story" },
   { href: "/colectii", labelKey: "collections" },
-  { href: "/#mestesug", labelKey: "craft" },
   { href: "/atelier", labelKey: "atelier" },
   { href: "/#contact", labelKey: "contact" },
 ];
@@ -21,8 +20,7 @@ export const footerNavigation = {
   ],
   story: [
     { href: "/poveste", label: "Povestea familiei" },
-    { href: "/#mestesug", label: "Meșteșugul" },
-    { href: "/#generatii", label: "Cinci generații" },
+    { href: "/#povestea", label: "Povestea noastră" },
   ],
   atelier: [
     { href: "/atelier", label: "Atelierul" },
