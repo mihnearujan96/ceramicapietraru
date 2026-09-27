@@ -29,7 +29,7 @@ const localBusinessJsonLd = {
   description:
     "Ceramică lucrată manual în Horezu, România — tradiție transmisă din generație în generație.",
   url: SITE.url,
-  image: `${SITE.url}/images/hero/building-exterior.jpg`,
+  image: `${SITE.url}/images/hero/pot-building.png`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Horezu",
