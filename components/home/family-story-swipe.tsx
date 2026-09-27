@@ -66,7 +66,7 @@ function buildSlides(): Slide[] {
     {
       id: "nicoleta",
       label: nicoleta.title,
-      title: "Continuitoarea manierei",
+      title: "Păstrătoarea meșteșugului",
       caption: nicoleta.caption,
       body: nicoleta.paragraphs[0],
       image: img.nicoletaBowl,
