@@ -135,7 +135,7 @@ export const ro = {
     title: "Obiecte făcute pe rând.",
     supporting: "Fiecare piesă trece prin mâini înainte să ajungă la tine.",
     viewAll: "Vezi toate colecțiile",
-    handmade: "Lucrat manual",
+    handmade: "Lucrat manual · Artist (Nicoleta Pietraru)",
     addToCart: "Adaugă",
     viewDetails: "Vezi detalii",
     motifs: [
@@ -198,7 +198,7 @@ export const ro = {
     ],
   },
   handmade: {
-    title: "Nu facem obiecte identice.\nFacem obiecte autentice.",
+    title: "Nu facem obiecte identice.\nFacem obiecte unicate.",
     values: [
       {
         title: "Lucrat manual",
