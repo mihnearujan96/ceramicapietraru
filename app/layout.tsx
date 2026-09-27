@@ -34,7 +34,7 @@ const localBusinessJsonLd = {
     "@type": "PostalAddress",
     addressLocality: "Horezu",
     addressCountry: "RO",
-    streetAddress: CONTACT.address === "TODO" ? undefined : CONTACT.address,
+    streetAddress: CONTACT.address,
   },
   telephone: CONTACT.phones.map((phone) => phone.tel),
   email: CONTACT.email === "TODO" ? undefined : CONTACT.email,

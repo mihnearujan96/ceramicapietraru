@@ -73,15 +73,9 @@ export function Atelier() {
               <Button href="/atelier" showArrow>
                 {copy.nav.atelier}
               </Button>
-              {CONTACT.mapUrl !== "TODO" ? (
-                <Button href={CONTACT.mapUrl} variant="secondary">
-                  {copy.atelier.map}
-                </Button>
-              ) : (
-                <p className="self-center text-xs text-muted">
-                  {copy.atelier.placeholdersNote}
-                </p>
-              )}
+              <Button href={CONTACT.mapUrl} variant="secondary">
+                {copy.atelier.map}
+              </Button>
             </Reveal>
           </div>
         </div>
