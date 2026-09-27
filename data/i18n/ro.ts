@@ -159,6 +159,16 @@ export const ro = {
         image: "/images/collections/motifs/cocosul-spirala-vietii.png",
         alt: "Farfurie cu cocoșul și spirala vieții",
       },
+      {
+        title: "Șarpele casei",
+        image: "/images/collections/motifs/sarpele-casei.png",
+        alt: "Farfurie cu șarpele casei din ceramica de Horezu",
+      },
+      {
+        title: "Spicul de grâu",
+        image: "/images/collections/motifs/spicul-de-grau.png",
+        alt: "Farfurie cu spicul de grâu din ceramica de Horezu",
+      },
     ],
   },
   process: {
@@ -214,6 +224,17 @@ export const ro = {
     map: "Vezi pe hartă",
     placeholdersNote: "Datele de contact vor fi actualizate.",
   },
+  shop: {
+    eyebrow: "Magazin online",
+    title: "În construcție",
+    supporting:
+      "Lucrăm la magazinul online. Până atunci, ne găsiți offline în Horezu — în atelierul-magazin.",
+    addressLabel: "Adresă",
+    hoursLabel: "Program",
+    phoneLabel: "Telefon",
+    map: "Vezi pe hartă",
+    backHome: "Înapoi acasă",
+  },
   quote: {
     text: "O poveste modelată în lut, pictată cu cornul și desăvârșită prin foc.",
   },
@@ -240,12 +261,12 @@ export const ro = {
     madeToOrder: "La comandă",
     inStock: "În stoc",
     sold: "Epuizat",
-    backToCollections: "Înapoi la colecții",
+    backToHome: "Înapoi acasă",
   },
   cart: {
     title: "Coșul tău",
     empty: "Coșul este gol.",
-    emptyHint: "Descoperă colecția și alege o piesă care ți se potrivește.",
+    emptyHint: "Revino pe pagina principală și descoperă povestea ceramicii din Horezu.",
     subtotal: "Subtotal",
     checkout: "Continuă comanda",
     checkoutTodo: "TODO: Integrare Stripe Checkout",

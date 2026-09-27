@@ -33,10 +33,10 @@ export function FinalCta() {
             {copy.finalCta.supporting}
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Button href="/colectii" size="lg" showArrow>
+            <Button href="/#colectii" size="lg" showArrow>
               {copy.finalCta.primary}
             </Button>
-            <Button href="/atelier" variant="secondary" size="lg">
+            <Button href="/#atelier" variant="secondary" size="lg">
               {copy.finalCta.secondary}
             </Button>
           </div>

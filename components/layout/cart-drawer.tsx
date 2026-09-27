@@ -81,7 +81,7 @@ export function CartDrawer() {
                     {copy.cart.emptyHint}
                   </p>
                   <Button
-                    href="/colectii"
+                    href="/magazin"
                     className="mt-8"
                     showArrow
                     onClick={closeCart}

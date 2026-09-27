@@ -11,8 +11,8 @@ const copy = getDictionary();
 export function Atelier() {
   return (
     <section
-      id="contact"
-      className="bg-cream py-20 md:py-28"
+      id="atelier"
+      className="scroll-mt-28 bg-cream py-20 md:scroll-mt-36 md:py-28"
       aria-labelledby="atelier-title"
     >
       <Container>
@@ -51,29 +51,28 @@ export function Atelier() {
               </p>
             </Reveal>
 
-            <Reveal className="mt-10 grid gap-5 sm:grid-cols-2">
-              <InfoBlock label={copy.atelier.address} value={CONTACT.address} />
-              <InfoBlock label={copy.atelier.hours} value={CONTACT.hours} />
-              {CONTACT.phones.map((phone) => (
-                <InfoBlock key={phone.tel} label={copy.atelier.phone}>
-                  <a
-                    href={`tel:${phone.tel}`}
-                    className="mt-2 inline-block text-sm text-foreground underline-offset-4 transition-colors hover:text-clay hover:underline"
-                  >
-                    {phone.label}
-                  </a>
-                </InfoBlock>
-              ))}
-              {CONTACT.email !== "TODO" ? (
-                <InfoBlock label="Email" value={CONTACT.email} />
-              ) : null}
-            </Reveal>
+            <div id="contact" className="mt-10 scroll-mt-28 md:scroll-mt-36">
+              <Reveal className="grid gap-5 sm:grid-cols-2">
+                <InfoBlock label={copy.atelier.address} value={CONTACT.address} />
+                <InfoBlock label={copy.atelier.hours} value={CONTACT.hours} />
+                {CONTACT.phones.map((phone) => (
+                  <InfoBlock key={phone.tel} label={copy.atelier.phone}>
+                    <a
+                      href={`tel:${phone.tel}`}
+                      className="mt-2 inline-block text-sm text-foreground underline-offset-4 transition-colors hover:text-clay hover:underline"
+                    >
+                      {phone.label}
+                    </a>
+                  </InfoBlock>
+                ))}
+                {CONTACT.email !== "TODO" ? (
+                  <InfoBlock label="Email" value={CONTACT.email} />
+                ) : null}
+              </Reveal>
+            </div>
 
             <Reveal className="mt-8 flex flex-wrap gap-3">
-              <Button href="/atelier" showArrow>
-                {copy.nav.atelier}
-              </Button>
-              <Button href={CONTACT.mapUrl} variant="secondary">
+              <Button href={CONTACT.mapUrl} showArrow>
                 {copy.atelier.map}
               </Button>
             </Reveal>

@@ -8,7 +8,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 const copy = getDictionary();
 
-function ValueRow({
+function ValueItem({
   value,
   index,
 }: {
@@ -20,74 +20,35 @@ function ValueRow({
 
   return (
     <motion.article
-      className="group relative border-t border-border py-10 first:border-t-0 first:pt-0 md:py-12"
-      initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+      className="group min-w-0 text-center"
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-12% 0px" }}
+      viewport={{ once: true, margin: "-8% 0px" }}
       transition={{
-        duration: 0.75,
+        duration: 0.55,
         ease: [0.22, 1, 0.36, 1],
         delay: index * 0.06,
       }}
     >
-      <div className="flex items-baseline gap-4 md:gap-6">
-        <motion.p
-          className="heading-display shrink-0 text-[clamp(2.75rem,7vw,4.5rem)] leading-none text-clay/35 transition-colors duration-500 group-hover:text-clay/55"
+      <div className="flex items-baseline justify-center gap-2.5">
+        <p
+          className="heading-display shrink-0 text-xl leading-none text-clay/40 transition-colors duration-300 group-hover:text-clay/60 sm:text-2xl"
           aria-hidden
-          initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-12% 0px" }}
-          transition={{
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1],
-            delay: 0.05 + index * 0.06,
-          }}
         >
           {number}
-        </motion.p>
-
-        <div className="min-w-0 flex-1">
-          <motion.h4
-            className="heading-display text-[clamp(1.85rem,4vw,2.75rem)] leading-tight"
-            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-12% 0px" }}
-            transition={{
-              duration: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.12 + index * 0.06,
-            }}
-          >
-            <span className="sr-only">{number}. </span>
-            {value.title}
-          </motion.h4>
-          <motion.span
-            aria-hidden
-            className="mt-3 block h-px w-14 origin-left bg-clay/55 md:mt-4 md:w-20"
-            initial={reduceMotion ? false : { scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: "-12% 0px" }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.18 + index * 0.06,
-            }}
-          />
-          <motion.p
-            className="mt-4 max-w-xl text-base leading-relaxed text-muted md:text-lg"
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-12% 0px" }}
-            transition={{
-              duration: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.24 + index * 0.06,
-            }}
-          >
-            {value.body}
-          </motion.p>
-        </div>
+        </p>
+        <h4 className="heading-display text-lg leading-tight sm:text-xl">
+          <span className="sr-only">{number}. </span>
+          {value.title}
+        </h4>
       </div>
+      <span
+        aria-hidden
+        className="mx-auto mt-2.5 block h-px w-10 bg-clay/45 transition-all duration-300 group-hover:w-14"
+      />
+      <p className="mx-auto mt-2.5 max-w-[18rem] text-sm leading-relaxed text-muted">
+        {value.body}
+      </p>
     </motion.article>
   );
 }
@@ -96,7 +57,7 @@ export function HandmadeValues() {
   return (
     <section
       id="colectii"
-      className="bg-warm-white py-20 md:pb-28 md:pt-28"
+      className="scroll-mt-28 bg-warm-white py-20 md:scroll-mt-36 md:pb-28 md:pt-28"
       aria-labelledby="handmade-title"
     >
       <Container>
@@ -121,9 +82,9 @@ export function HandmadeValues() {
           <CollectionsSwipe />
         </Reveal>
 
-        <div className="mt-16 border-t border-border pt-4 md:mt-20 md:pt-6">
+        <div className="mt-12 grid gap-8 border-t border-border pt-10 sm:grid-cols-3 sm:gap-6 md:mt-16 md:gap-10 md:pt-12">
           {copy.handmade.values.map((value, index) => (
-            <ValueRow key={value.title} value={value} index={index} />
+            <ValueItem key={value.title} value={value} index={index} />
           ))}
         </div>
       </Container>

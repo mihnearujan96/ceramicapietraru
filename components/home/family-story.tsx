@@ -76,7 +76,7 @@ export function FamilyStory() {
   return (
     <section
       id="povestea"
-      className="bg-cream py-20 md:py-28"
+      className="scroll-mt-28 bg-cream py-20 md:scroll-mt-36 md:py-28"
       aria-labelledby="family-title"
     >
       <Container>

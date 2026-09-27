@@ -8,17 +8,18 @@ import { mainNavigation } from "@/data/navigation";
 import { getDictionary } from "@/data/i18n/ro";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Search, ShoppingBag, X } from "lucide-react";
+import { ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { SearchDialog } from "@/components/layout/search-dialog";
 
 const copy = getDictionary();
 
 export function Header() {
+  const pathname = usePathname();
+  const isShopPage = pathname === "/magazin";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount, openCart } = useCart();
   const reduceMotion = useReducedMotion();
 
@@ -53,21 +54,14 @@ export function Header() {
             : "border-b border-transparent bg-cream/70 backdrop-blur-[2px] lg:bg-transparent lg:backdrop-blur-none",
         )}
       >
-        {/* Mobile: search | centered logo | cart + menu */}
+        {/* Mobile: spacer | centered logo | cart + menu */}
         <Container
           className={cn(
             "relative flex items-center justify-between lg:hidden",
             scrolled ? "h-14" : "h-[5.5rem]",
           )}
         >
-          <button
-            type="button"
-            onClick={() => setSearchOpen(true)}
-            className="relative z-10 inline-flex size-10 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
-            aria-label={copy.nav.search}
-          >
-            <Search className="size-5" />
-          </button>
+          <div className="size-10" aria-hidden />
 
           <div className="pointer-events-auto absolute inset-y-0 left-1/2 z-0 flex -translate-x-1/2 items-center">
             <Logo
@@ -147,10 +141,13 @@ export function Header() {
             )}
           />
 
-          <nav className="flex items-center gap-7" aria-label="Principal">
+          <nav
+            className="flex items-center gap-6 xl:gap-7"
+            aria-label="Principal"
+          >
             {mainNavigation.map((item) => (
               <Link
-                key={item.href}
+                key={item.labelKey}
                 href={item.href}
                 className="group relative text-sm text-foreground/80 transition-colors hover:text-foreground"
               >
@@ -166,15 +163,6 @@ export function Header() {
           <div className="flex items-center gap-2 md:gap-3">
             <button
               type="button"
-              onClick={() => setSearchOpen(true)}
-              className="inline-flex size-11 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
-              aria-label={copy.nav.search}
-            >
-              <Search className="size-5" />
-            </button>
-
-            <button
-              type="button"
               onClick={openCart}
               className="relative inline-flex size-11 items-center justify-center rounded-[12px] text-foreground transition-colors hover:bg-cream/80"
               aria-label={copy.nav.cart}
@@ -187,15 +175,17 @@ export function Header() {
               ) : null}
             </button>
 
-            <Button
-              href="/colectii"
-              variant="primary"
-              size="md"
-              showArrow
-              className="rounded-[12px] px-5"
-            >
-              {copy.nav.shop}
-            </Button>
+            {isShopPage ? null : (
+              <Button
+                href="/magazin"
+                variant="primary"
+                size="md"
+                showArrow
+                className="rounded-[12px] px-5"
+              >
+                {copy.nav.shop}
+              </Button>
+            )}
           </div>
         </Container>
       </header>
@@ -229,7 +219,7 @@ export function Header() {
               <nav aria-label="Mobil" className="flex flex-1 flex-col gap-2">
                 {mainNavigation.map((item, index) => (
                   <motion.div
-                    key={item.href}
+                    key={item.labelKey}
                     initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -249,21 +239,21 @@ export function Header() {
                 ))}
               </nav>
 
-              <Button
-                href="/colectii"
-                size="lg"
-                showArrow
-                className="mt-8 w-full"
-                onClick={() => setMenuOpen(false)}
-              >
-                {copy.nav.shop}
-              </Button>
+              {isShopPage ? null : (
+                <Button
+                  href="/magazin"
+                  size="lg"
+                  showArrow
+                  className="mt-8 w-full"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {copy.nav.shop}
+                </Button>
+              )}
             </Container>
           </motion.div>
         ) : null}
       </AnimatePresence>
-
-      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

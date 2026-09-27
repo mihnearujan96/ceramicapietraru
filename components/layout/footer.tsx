@@ -6,11 +6,6 @@ import Link from "next/link";
 
 const copy = getDictionary();
 
-const contactLinks = [
-  { href: "/atelier", label: copy.footer.atelier },
-  { href: "/#contact", label: copy.nav.contact },
-] as const;
-
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -26,7 +21,6 @@ export function Footer() {
       />
 
       <Container className="relative py-10 md:py-12">
-        {/* Motto + logo as one closing mark */}
         <div className="mx-auto max-w-2xl text-center">
           <Logo
             variant="light"
@@ -38,23 +32,24 @@ export function Footer() {
               „{copy.quote.text}”
             </p>
           </blockquote>
-          <p className="mt-5 max-w-sm mx-auto text-xs leading-relaxed tracking-[0.04em] text-cream/55">
+          <p className="mt-5 mx-auto max-w-sm text-xs leading-relaxed tracking-[0.04em] text-cream/55">
             {copy.brand.tagline}
           </p>
         </div>
 
-        {/* Two-column nav on mobile, four on desktop */}
         <nav
           aria-label="Footer"
-          className="mt-8 grid grid-cols-2 gap-x-5 gap-y-6 border-t border-white/10 pt-7 md:mt-10 md:grid-cols-4 md:gap-6 md:pt-8"
+          className="mt-8 grid grid-cols-2 gap-x-5 gap-y-6 border-t border-white/10 pt-7 md:mt-10 md:grid-cols-3 md:gap-6 md:pt-8"
         >
-          <FooterColumn title={copy.footer.shop} links={footerNavigation.shop} />
           <FooterColumn
             title={copy.footer.story}
             links={footerNavigation.story}
           />
-          <FooterColumn title={copy.footer.contact} links={contactLinks} />
-          <div>
+          <FooterColumn
+            title={copy.footer.atelier}
+            links={footerNavigation.atelier}
+          />
+          <div className="col-span-2 md:col-span-1">
             <p className="mb-2.5 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-terracotta">
               {copy.brand.location}
             </p>

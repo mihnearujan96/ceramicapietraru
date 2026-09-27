@@ -5,25 +5,20 @@ export type NavItem = {
 
 export const mainNavigation: NavItem[] = [
   { href: "/", labelKey: "home" },
-  { href: "/poveste", labelKey: "story" },
-  { href: "/colectii", labelKey: "collections" },
-  { href: "/atelier", labelKey: "atelier" },
+  { href: "/#povestea", labelKey: "story" },
+  { href: "/#colectii", labelKey: "collections" },
+  { href: "/#atelier", labelKey: "atelier" },
   { href: "/#contact", labelKey: "contact" },
 ];
 
 export const footerNavigation = {
-  shop: [
-    { href: "/colectii", label: "Colecții" },
-    { href: "/colectii#farfurii", label: "Farfurii" },
-    { href: "/colectii#cani", label: "Căni" },
-    { href: "/colectii#vase", label: "Vase" },
-  ],
   story: [
-    { href: "/poveste", label: "Povestea familiei" },
     { href: "/#povestea", label: "Povestea noastră" },
+    { href: "/#colectii", label: "Colecții" },
   ],
   atelier: [
-    { href: "/atelier", label: "Atelierul" },
+    { href: "/#atelier", label: "Atelierul" },
     { href: "/#contact", label: "Contact" },
+    { href: "/magazin", label: "Magazin" },
   ],
 } as const;

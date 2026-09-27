@@ -123,7 +123,7 @@ export function Hero() {
             <Image
               src="/images/hero/pot-building.png"
               alt="Atelierul Ceramica Pietraru — clădirea în formă de vas din Horezu"
-              width={1146}
+              width={1146}  
               height={750}
               priority
               unoptimized
@@ -145,7 +145,7 @@ export function Hero() {
                 transition={{ duration: reduceMotion ? 0 : 0.6, delay: 0.65 }}
               >
                 <Button
-                  href="/colectii"
+                  href="/#colectii"
                   size="md"
                   showArrow
                   className="w-full rounded-full px-3 text-sm shadow-[0_8px_24px_rgba(42,28,20,0.3)]"
@@ -153,7 +153,7 @@ export function Hero() {
                   {copy.hero.ctaPrimary}
                 </Button>
                 <Button
-                  href="/poveste"
+                  href="/#povestea"
                   variant="cream"
                   size="md"
                   className="w-full rounded-full px-3 text-sm shadow-[0_8px_24px_rgba(42,28,20,0.22)]"
@@ -210,10 +210,10 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: reduceMotion ? 0 : 0.7, delay: 0.7 }}
           >
-            <Button href="/colectii" size="lg" showArrow>
+            <Button href="/#colectii" size="lg" showArrow>
               {copy.hero.ctaPrimary}
             </Button>
-            <Button href="/poveste" variant="secondary" size="lg">
+            <Button href="/#povestea" variant="secondary" size="lg">
               {copy.hero.ctaSecondary}
             </Button>
           </motion.div>

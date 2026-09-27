@@ -12,14 +12,14 @@ export default function NotFound() {
           Pagina nu a fost găsită.
         </h1>
         <p className="mt-5 text-muted">
-          Poate vasul s-a mutat pe altă poliță. Hai înapoi la colecție.
+          Poate vasul s-a mutat pe altă poliță. Hai înapoi acasă.
         </p>
         <div className="mt-10 flex justify-center gap-3">
           <Button href="/" showArrow>
             Acasă
           </Button>
-          <Button href="/colectii" variant="secondary">
-            Colecții
+          <Button href="/#povestea" variant="secondary">
+            Povestea noastră
           </Button>
         </div>
       </Container>
