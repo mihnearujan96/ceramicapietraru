@@ -3,12 +3,7 @@
 import { getDictionary } from "@/data/i18n/ro";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import {
-  useEffect,
-  useRef,
-  useState,
-  type KeyboardEvent,
-} from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 
 const copy = getDictionary();
 
@@ -29,43 +24,57 @@ const plates = [
 
 export function CollectionsSwipe() {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef(0);
   const [active, setActive] = useState(0);
 
-  useEffect(() => {
+  function updateActive() {
     const root = scrollerRef.current;
     if (!root) return;
 
-    const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-plate]"));
-    if (cards.length === 0) return;
+    cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(() => {
+      const scroller = scrollerRef.current;
+      if (!scroller) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-        const index = Number(visible.target.getAttribute("data-index"));
-        if (!Number.isNaN(index)) setActive(index);
-      },
-      {
-        root,
-        threshold: [0.45, 0.6, 0.75],
-      },
-    );
+      const cards = scroller.querySelectorAll<HTMLElement>("[data-plate]");
+      if (cards.length === 0) return;
 
-    cards.forEach((card) => observer.observe(card));
-    return () => observer.disconnect();
-  }, []);
+      const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+      let best = 0;
+
+      if (scroller.scrollLeft <= 1) {
+        best = 0;
+      } else if (maxScroll - scroller.scrollLeft <= 8) {
+        best = cards.length - 1;
+      } else {
+        const origin =
+          scroller.getBoundingClientRect().left +
+          (Number.parseFloat(getComputedStyle(scroller).paddingLeft) || 0);
+        let bestDist = Infinity;
+        cards.forEach((card, index) => {
+          const dist = Math.abs(card.getBoundingClientRect().left - origin);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = index;
+          }
+        });
+      }
+
+      setActive((current) => (current === best ? current : best));
+    });
+  }
 
   function scrollTo(index: number) {
     const root = scrollerRef.current;
     if (!root) return;
     const card = root.querySelector<HTMLElement>(`[data-index="${index}"]`);
-    card?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
+    if (!card) return;
+    const padLeft = Number.parseFloat(getComputedStyle(root).paddingLeft) || 0;
+    const delta =
+      card.getBoundingClientRect().left - root.getBoundingClientRect().left - padLeft;
+    const max = Math.max(0, root.scrollWidth - root.clientWidth);
+    const next = Math.min(Math.max(0, root.scrollLeft + delta), max);
+    root.scrollTo({ left: next, behavior: "smooth" });
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
@@ -98,7 +107,8 @@ export function CollectionsSwipe() {
         aria-label={copy.collections.eyebrow}
         tabIndex={0}
         onKeyDown={onKeyDown}
-        className="mt-5 -mx-[clamp(1rem,4vw,3.5rem)] flex snap-x snap-mandatory gap-6 overflow-x-auto px-[clamp(1rem,4vw,3.5rem)] pb-4 [-ms-overflow-style:none] [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 [&::-webkit-scrollbar]:hidden md:gap-10"
+        onScroll={updateActive}
+        className="mt-5 -mx-[clamp(1rem,4vw,3.5rem)] flex snap-x snap-mandatory scroll-pl-[clamp(1rem,4vw,3.5rem)] scroll-pe-[clamp(1rem,4vw,3.5rem)] gap-6 overflow-x-auto px-[clamp(1rem,4vw,3.5rem)] pb-4 [-ms-overflow-style:none] [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 [&::-webkit-scrollbar]:hidden md:gap-10"
       >
         {plates.map((plate, index) => (
           <figure
@@ -106,7 +116,10 @@ export function CollectionsSwipe() {
             data-plate
             data-index={index}
             aria-label={`${index + 1} din ${plates.length}: ${plate.title}`}
-            className="w-[min(72vw,20rem)] shrink-0 snap-center sm:w-[min(48vw,22rem)] md:w-[min(38vw,24rem)]"
+            className={cn(
+              "w-[min(72vw,20rem)] shrink-0 snap-start sm:w-[min(48vw,22rem)] md:w-[min(38vw,24rem)]",
+              index === plates.length - 1 && "snap-end",
+            )}
           >
             <div className="group relative mx-auto aspect-square w-full">
               <div
@@ -135,7 +148,6 @@ export function CollectionsSwipe() {
             </figcaption>
           </figure>
         ))}
-        <div aria-hidden className="w-2 shrink-0" />
       </div>
 
       <div

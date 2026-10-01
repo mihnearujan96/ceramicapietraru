@@ -153,7 +153,7 @@ export function FamilyStorySwipe() {
         aria-label={copy.family.title}
         tabIndex={0}
         onKeyDown={onKeyDown}
-        className="mt-5 -mx-[clamp(1rem,4vw,3.5rem)] flex items-stretch snap-x snap-mandatory gap-4 overflow-x-auto px-[clamp(1rem,4vw,3.5rem)] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 [&::-webkit-scrollbar]:hidden"
+        className="mt-5 -mx-[clamp(1rem,4vw,3.5rem)] flex items-start snap-x snap-mandatory gap-4 overflow-x-auto px-[clamp(1rem,4vw,3.5rem)] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/40 [&::-webkit-scrollbar]:hidden"
       >
         {slides.map((slide, index) => {
           const isOpen = expanded[slide.id];
@@ -165,9 +165,9 @@ export function FamilyStorySwipe() {
               data-slide
               data-index={index}
               aria-label={`${index + 1} din ${slides.length}: ${slide.label}`}
-              className="flex w-[min(82vw,22rem)] shrink-0 snap-center self-stretch sm:snap-start"
+              className="flex w-[min(82vw,22rem)] shrink-0 snap-center self-start sm:snap-start"
             >
-              <div className="flex h-full w-full flex-col overflow-hidden rounded-[20px] bg-warm-white shadow-[0_18px_40px_-28px_rgba(68,47,38,0.45)] ring-1 ring-brown/10">
+              <div className="flex w-full flex-col overflow-hidden rounded-[20px] bg-warm-white shadow-[0_18px_40px_-28px_rgba(68,47,38,0.45)] ring-1 ring-brown/10">
                 <div className="relative aspect-[4/5] shrink-0 overflow-hidden">
                   <Image
                     src={slide.image.src}
@@ -186,7 +186,7 @@ export function FamilyStorySwipe() {
                   </p>
                 </div>
 
-                <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
+                <div className="flex flex-col px-5 pb-5 pt-5">
                   <h3 className="heading-display min-h-[3.3rem] text-[1.65rem] leading-tight">
                     {slide.title}
                   </h3>
@@ -195,20 +195,21 @@ export function FamilyStorySwipe() {
                   </p>
                   <p
                     className={cn(
-                      "mt-4 flex-1 text-[0.95rem] leading-relaxed text-muted",
+                      "mt-4 min-h-[calc(0.95rem*1.625*5)] text-[0.95rem] leading-relaxed text-muted",
                       !isOpen && "line-clamp-5",
                     )}
                   >
                     {slide.body}
                   </p>
-                  <div className="mt-3 min-h-[1.25rem]">
+                  <div className="mt-3 min-h-6">
                     {needsClamp ? (
                       <button
                         type="button"
+                        aria-expanded={isOpen}
                         onClick={() =>
-                          setExpanded((prev) => ({
-                            ...prev,
-                            [slide.id]: !prev[slide.id],
+                          setExpanded((current) => ({
+                            ...current,
+                            [slide.id]: !current[slide.id],
                           }))
                         }
                         className="text-xs font-medium uppercase tracking-[0.16em] text-clay"

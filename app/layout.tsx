@@ -5,7 +5,7 @@ import { CartDrawer } from "@/components/layout/cart-drawer";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { defaultMetadata } from "@/lib/metadata";
-import { SITE, CONTACT } from "@/lib/contact";
+import { localBusinessJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -22,25 +22,6 @@ const manrope = Manrope({
 
 export const metadata: Metadata = defaultMetadata;
 
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: SITE.name,
-  description:
-    "Ceramică lucrată manual în Horezu, România — tradiție transmisă din generație în generație.",
-  url: SITE.url,
-  image: `${SITE.url}/images/hero/pot-building.png`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Horezu",
-    addressCountry: "RO",
-    streetAddress: CONTACT.address,
-  },
-  telephone: CONTACT.phones.map((phone) => phone.tel),
-  email: CONTACT.email === "TODO" ? undefined : CONTACT.email,
-  openingHours: "Mo-Su 10:00-19:00",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,7 +36,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd),
+            __html: JSON.stringify(localBusinessJsonLd()),
           }}
         />
         <CartProvider>

@@ -49,21 +49,24 @@ export function Hero() {
       <div className="relative flex min-h-[100svh] flex-col lg:hidden">
         {/* Copy band — clear of the pot */}
         <Container className="relative z-20 shrink-0 pt-[6.25rem] pb-1">
-          <motion.p
-            className="mb-2 text-center text-[0.68rem] font-medium uppercase tracking-[0.22em] text-clay"
-            initial={false}
-            animate={{ opacity: 1 }}
-            transition={{ duration: reduceMotion ? 0 : 0.5, delay: 0.06 }}
-          >
-            {copy.hero.eyebrow}
-          </motion.p>
+          <h1>
+            <motion.span
+              className="mb-2 block text-center text-[0.68rem] font-medium uppercase tracking-[0.22em] text-clay"
+              initial={false}
+              animate={{ opacity: 1 }}
+              transition={{ duration: reduceMotion ? 0 : 0.5, delay: 0.06 }}
+            >
+              {copy.hero.eyebrow}
+            </motion.span>
 
-          <StaggerText
-            text={`${copy.hero.line1}\n${copy.hero.line2}\n${copy.hero.line3}`}
-            className="heading-display text-center text-[clamp(2.35rem,10vw,3.25rem)] text-foreground"
-            delay={0.14}
-            stagger={0.1}
-          />
+            <StaggerText
+              as="span"
+              text={`${copy.hero.line1}\n${copy.hero.line2}\n${copy.hero.line3}`}
+              className="heading-display block text-center text-[clamp(2.35rem,10vw,3.25rem)] text-foreground"
+              delay={0.14}
+              stagger={0.1}
+            />
+          </h1>
 
           <motion.div
             className="mx-auto mt-3.5 w-[min(100%,20rem)] text-clay"
@@ -174,21 +177,24 @@ export function Hero() {
       {/* ── Desktop ── */}
       <Container className="relative z-10 hidden min-h-[100svh] lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.05fr)] lg:items-center lg:gap-3 lg:pb-16 lg:pt-36 xl:gap-4">
         <div className="relative z-20 min-w-0 shrink-0">
-          <motion.p
-            className="mb-5 text-xs font-medium uppercase tracking-[0.24em] text-clay"
-            initial={false}
-            animate={{ opacity: 1 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, delay: 0.15 }}
-          >
-            {copy.hero.eyebrow}
-          </motion.p>
+          <h1>
+            <motion.span
+              className="mb-5 block text-xs font-medium uppercase tracking-[0.24em] text-clay"
+              initial={false}
+              animate={{ opacity: 1 }}
+              transition={{ duration: reduceMotion ? 0 : 0.7, delay: 0.15 }}
+            >
+              {copy.hero.eyebrow}
+            </motion.span>
 
-          <StaggerText
-            text={`${copy.hero.line1}\n${copy.hero.line2}\n${copy.hero.line3}`}
-            className="heading-display text-[clamp(2.5rem,5.8vw,5.75rem)] text-foreground"
-            delay={0.2}
-            stagger={0.1}
-          />
+            <StaggerText
+              as="span"
+              text={`${copy.hero.line1}\n${copy.hero.line2}\n${copy.hero.line3}`}
+              className="heading-display block text-[clamp(2.5rem,5.8vw,5.75rem)] text-foreground"
+              delay={0.2}
+              stagger={0.1}
+            />
+          </h1>
 
           <motion.div
             className="mt-5 w-full max-w-md text-clay"

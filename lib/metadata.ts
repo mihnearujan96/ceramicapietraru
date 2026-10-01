@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { SITE } from "@/lib/contact";
+import { CONTACT, SITE } from "@/lib/contact";
 import { absoluteUrl } from "@/lib/utils";
 
-const defaultTitle =
-  "Ceramica Pietraru | Ceramică lucrată manual în Horezu";
+const defaultTitle = "Ceramica Pietraru | Ceramică de Horezu";
 const defaultDescription =
-  "Descoperă Ceramica Pietraru — ceramică lucrată manual în Horezu, România, în tradiția familiilor Mischiu și Pietraru.";
+  "Ceramica Pietraru — ceramică de Horezu, lucrată manual în atelierul din Horezu, județul Vâlcea. Motive tradiționale, pictate cu cornul.";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -20,11 +19,13 @@ export const defaultMetadata: Metadata = {
   publisher: SITE.name,
   keywords: [
     "Ceramica Pietraru",
+    "ceramică de Horezu",
     "Horezu",
+    "Vâlcea",
+    "atelier ceramică Horezu",
     "ceramică manuală",
     "olărit",
     "România",
-    "meșteșug tradițional",
   ],
   alternates: {
     canonical: "/",
@@ -50,6 +51,15 @@ export const defaultMetadata: Metadata = {
     title: defaultTitle,
     description: defaultDescription,
     images: ["/images/hero/pot-building.png"],
+  },
+  other: {
+    "geo.region": CONTACT.regionCode,
+    "geo.placename": CONTACT.locality,
+    "geo.position": `${CONTACT.latitude};${CONTACT.longitude}`,
+    ICBM: `${CONTACT.latitude}, ${CONTACT.longitude}`,
+  },
+  verification: {
+    google: "xnh1hZ5q9d69LPHMe3gahrdIvJqkg3xIkRcytDAg5Oc",
   },
   robots: {
     index: true,

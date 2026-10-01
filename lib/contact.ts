@@ -3,7 +3,16 @@
  * Do not invent address, phone, email, or hours.
  */
 export const CONTACT = {
-  address: "Strada Tudor Vladimirescu 26, 245800 Horezu",
+  address: "Strada Tudor Vladimirescu 26, 245800 Horezu, Vâlcea",
+  streetAddress: "Strada Tudor Vladimirescu 26",
+  postalCode: "245800",
+  locality: "Horezu",
+  region: "Vâlcea",
+  regionCode: "RO-VL",
+  country: "RO",
+  /** Pin from the existing Google Maps embed for Ceramica Pietraru. */
+  latitude: 45.14449665459249,
+  longitude: 24.000249911751215,
   phones: [
     { label: "+40 730 602 177", tel: "+40730602177" },
     { label: "+40 722 774 335", tel: "+40722774335" },

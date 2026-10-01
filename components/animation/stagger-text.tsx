@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 type StaggerTextProps = {
   text: string;
-  as?: "h1" | "h2" | "h3" | "p";
+  as?: "h1" | "h2" | "h3" | "p" | "span";
   className?: string;
   delay?: number;
   stagger?: number;

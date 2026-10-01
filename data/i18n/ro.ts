@@ -20,7 +20,7 @@ export const ro = {
     skipToContent: "Sari la conținut",
   },
   hero: {
-    eyebrow: "Horezu · România",
+    eyebrow: "Ceramica Pietraru · Horezu",
     line1: "Din lut.",
     line2: "Din familie.",
     line3: "Din Horezu.",
@@ -200,20 +200,6 @@ export const ro = {
   },
   handmade: {
     title: "Nu facem obiecte identice.\nFacem obiecte unicate.",
-    values: [
-      {
-        title: "Lucrat manual",
-        body: "Fiecare obiect trece prin mâini omenești — de la pământ până la smalț.",
-      },
-      {
-        title: "Tradiție",
-        body: "Tradiție ceramică transmisă în atelier, din generație în generație — nu din manuale.",
-      },
-      {
-        title: "Din România",
-        body: "Făcut în Horezu — un loc unde lutul are memorie.",
-      },
-    ],
   },
   atelier: {
     eyebrow: "Atelier",
@@ -229,7 +215,7 @@ export const ro = {
     eyebrow: "Magazin online",
     title: "În construcție",
     supporting:
-      "Lucrăm la magazinul online. Până atunci, ne găsiți offline în Horezu — în atelierul-magazin.",
+      "Lucrăm la magazinul online. Până atunci, ne găsiți acasă în Horezu — în atelierul-magazin.",
     addressLabel: "Adresă",
     hoursLabel: "Program",
     phoneLabel: "Telefon",

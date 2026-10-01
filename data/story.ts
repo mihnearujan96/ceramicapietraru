@@ -46,7 +46,7 @@ export const familyStoryImages = {
     alt: "Laurențiu Pietraru finisând un vas de lut în atelier",
   },
   pietraruCostume: {
-    src: "/images/story/pietraru-costume.jpg",
+    src: "/images/story/pietraru-gradina.jpg",
     alt: "Nicoleta și Laurențiu Pietraru în port popular, alături de ceramică de Horezu",
   },
 } as const;

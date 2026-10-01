@@ -12,7 +12,7 @@ const copy = getDictionary();
 export const metadata = createPageMetadata({
   title: "Magazin",
   description:
-    "Magazinul online Ceramica Pietraru este în construcție. Ne găsiți offline în Horezu.",
+    "Magazinul online Ceramica Pietraru este în construcție. Până atunci, ne găsiți la atelierul din Horezu, județul Vâlcea.",
   path: "/magazin",
   image: "/images/atelier/atelier-fatada.jpg",
 });
