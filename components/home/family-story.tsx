@@ -92,8 +92,8 @@ export function FamilyStory() {
             {copy.family.title}
           </h2>
           <DecorativeLine
-            variant="zigzag"
-            color="#B96F4B"
+            variant="wave"
+            color="#b96f4b"
             className="mt-6 max-w-xs"
           />
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
@@ -108,19 +108,132 @@ export function FamilyStory() {
 
         {/* Desktop / tablet: editorial layout */}
         <div className="mt-16 hidden md:block md:mt-20">
-          {/* Familia Mischiu */}
+          {/* Familia Pietraru */}
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-12 xl:gap-14">
             <div className="mx-auto w-full max-w-[320px] lg:sticky lg:top-28 lg:mx-0 lg:max-w-[360px]">
               <Reveal>
                 <StoryImage
-                  {...img.mischiuCouple}
+                  {...img.pietraruCostume}
                   className="aspect-[4/5] w-full"
                   priority
                   sizes="(max-width: 1024px) 100vw, 360px"
                   imageClassName="object-top"
                 />
                 <p className="mt-3 text-xs tracking-[0.14em] text-muted">
-                  Dumitru &amp; Ioana Mischiu
+                  {copy.family.pietraruCaption}
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="lg:pt-4">
+              <Reveal>
+                <h3 className="heading-display text-[clamp(1.75rem,3.5vw,2.75rem)]">
+                  {copy.family.pietraruTitle}
+                </h3>
+                <DecorativeLine
+                  variant="dots"
+                  color="#B96F4B"
+                  className="mt-4 max-w-[9rem]"
+                />
+                <p className="mt-6 text-base leading-relaxed text-muted md:text-lg">
+                  {copy.family.pietraruIntro}
+                </p>
+              </Reveal>
+
+              {/* Nicoleta */}
+              <div className="mt-10 md:mt-12">
+                <Reveal>
+                  <h4 className="heading-display text-[clamp(1.5rem,3vw,2.15rem)]">
+                    {nicoleta.title}
+                  </h4>
+                  <DecorativeLine
+                    variant="dots"
+                    color="#B96F4B"
+                    className="mt-3 max-w-[7rem]"
+                  />
+                </Reveal>
+
+                <div className="mt-6">
+                  <div className="mb-4 w-full max-w-[220px] sm:float-right sm:mb-3 sm:ml-6 sm:max-w-[240px] md:ml-8">
+                    <StoryImage
+                      {...img.nicoletaBowl}
+                      className="aspect-[4/5]"
+                      sizes="240px"
+                    />
+                    <p className="mt-3 text-sm text-muted">
+                      {nicoleta.caption}
+                    </p>
+                  </div>
+
+                  <blockquote className="space-y-4">
+                    {nicoleta.paragraphs.map((paragraph) => (
+                      <p
+                        key={paragraph.slice(0, 48)}
+                        className="text-base leading-relaxed text-muted md:text-lg"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </blockquote>
+
+                  <div className="clear-both" />
+                </div>
+              </div>
+
+              {/* Laurentiu */}
+              <div className="mt-12 md:mt-14">
+                <Reveal>
+                  <h4 className="heading-display text-[clamp(1.5rem,3vw,2.15rem)]">
+                    {laurentiu.title}
+                  </h4>
+                  <DecorativeLine
+                    variant="dots"
+                    color="#B96F4B"
+                    className="mt-3 max-w-[7rem]"
+                  />
+                </Reveal>
+
+                <div className="mt-6">
+                  <div className="mb-4 w-full max-w-[220px] sm:float-left sm:mb-3 sm:mr-6 sm:max-w-[240px] md:mr-8">
+                    <StoryImage
+                      {...img.laurentiuWheel}
+                      className="aspect-[3/4]"
+                      sizes="240px"
+                    />
+                    <p className="mt-3 text-sm text-muted">
+                      {laurentiu.caption}
+                    </p>
+                  </div>
+
+                  <blockquote className="space-y-4">
+                    {laurentiu.paragraphs.map((paragraph) => (
+                      <p
+                        key={paragraph.slice(0, 48)}
+                        className="text-base leading-relaxed text-muted md:text-lg"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </blockquote>
+
+                  <div className="clear-both" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Familia Mischiu */}
+          <div className="mt-20 grid items-start gap-8 md:mt-28 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-12 xl:gap-14">
+            <div className="mx-auto w-full max-w-[320px] lg:sticky lg:top-28 lg:mx-0 lg:max-w-[360px]">
+              <Reveal>
+                <StoryImage
+                  {...img.mischiuCouple}
+                  className="aspect-[3/4] w-full"
+                  sizes="(max-width: 1024px) 100vw, 360px"
+                  imageClassName="object-[center_30%]"
+                />
+                <p className="mt-3 text-xs tracking-[0.14em] text-muted">
+                  {mischiu.caption}
                 </p>
               </Reveal>
             </div>
@@ -155,8 +268,9 @@ export function FamilyStory() {
                   <div>
                     <StoryImage
                       {...img.dumitruWheel}
-                      className="aspect-[4/3] max-w-md"
-                      sizes="(max-width: 1024px) 70vw, 28vw"
+                      className="aspect-[3/4] max-w-[320px]"
+                      sizes="(max-width: 1024px) 70vw, 320px"
+                      imageClassName="object-[center_35%]"
                     />
                     <p className="mt-3 text-sm text-muted">
                       {mischiu.dumitru.caption}
@@ -184,11 +298,11 @@ export function FamilyStory() {
                 </Reveal>
 
                 <div className="relative">
-                  <div className="mb-4 w-full max-w-[200px] sm:float-left sm:mb-3 sm:mr-6 sm:max-w-[220px] md:mr-8 md:max-w-[240px]">
+                  <div className="mb-4 w-full max-w-[320px] sm:float-left sm:mb-3 sm:mr-6 sm:max-w-[340px] md:mr-8 md:max-w-[380px]">
                     <StoryImage
                       {...img.ioanaPlate}
-                      className="aspect-[4/5]"
-                      sizes="240px"
+                      className="aspect-[4/3]"
+                      sizes="380px"
                     />
                     <p className="mt-3 text-sm text-muted">
                       {mischiu.ioana.caption}
@@ -207,121 +321,6 @@ export function FamilyStory() {
                   </blockquote>
 
                   <div className="clear-both" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Familia Pietraru */}
-          <div className="mt-20 md:mt-28">
-            <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-12 xl:gap-14">
-              <div className="mx-auto w-full max-w-[320px] lg:sticky lg:top-28 lg:mx-0 lg:max-w-[360px]">
-                <Reveal>
-                  <StoryImage
-                    {...img.pietraruCostume}
-                    className="aspect-[4/5] w-full"
-                    sizes="(max-width: 1024px) 100vw, 360px"
-                    imageClassName="object-top"
-                  />
-                  <p className="mt-3 text-xs tracking-[0.14em] text-muted">
-                    {copy.family.pietraruCaption}
-                  </p>
-                </Reveal>
-              </div>
-
-              <div className="lg:pt-4">
-                <Reveal>
-                  <h3 className="heading-display text-[clamp(1.75rem,3.5vw,2.75rem)]">
-                    {copy.family.pietraruTitle}
-                  </h3>
-                  <DecorativeLine
-                    variant="dots"
-                    color="#B96F4B"
-                    className="mt-4 max-w-[9rem]"
-                  />
-                  <p className="mt-6 text-base leading-relaxed text-muted md:text-lg">
-                    {copy.family.pietraruIntro}
-                  </p>
-                </Reveal>
-
-                {/* Nicoleta */}
-                <div className="mt-10 md:mt-12">
-                  <Reveal>
-                    <h4 className="heading-display text-[clamp(1.5rem,3vw,2.15rem)]">
-                      {nicoleta.title}
-                    </h4>
-                    <DecorativeLine
-                      variant="dots"
-                      color="#B96F4B"
-                      className="mt-3 max-w-[7rem]"
-                    />
-                  </Reveal>
-
-                  <div className="mt-6">
-                    <div className="mb-4 w-full max-w-[220px] sm:float-right sm:mb-3 sm:ml-6 sm:max-w-[240px] md:ml-8">
-                      <StoryImage
-                        {...img.nicoletaBowl}
-                        className="aspect-[4/5]"
-                        sizes="240px"
-                      />
-                      <p className="mt-3 text-sm text-muted">
-                        {nicoleta.caption}
-                      </p>
-                    </div>
-
-                    <blockquote className="space-y-4">
-                      {nicoleta.paragraphs.map((paragraph) => (
-                        <p
-                          key={paragraph.slice(0, 48)}
-                          className="text-base leading-relaxed text-muted md:text-lg"
-                        >
-                          {paragraph}
-                        </p>
-                      ))}
-                    </blockquote>
-
-                    <div className="clear-both" />
-                  </div>
-                </div>
-
-                {/* Laurentiu */}
-                <div className="mt-12 md:mt-14">
-                  <Reveal>
-                    <h4 className="heading-display text-[clamp(1.5rem,3vw,2.15rem)]">
-                      {laurentiu.title}
-                    </h4>
-                    <DecorativeLine
-                      variant="dots"
-                      color="#B96F4B"
-                      className="mt-3 max-w-[7rem]"
-                    />
-                  </Reveal>
-
-                  <div className="mt-6">
-                    <div className="mb-4 w-full max-w-[220px] sm:float-left sm:mb-3 sm:mr-6 sm:max-w-[240px] md:mr-8">
-                      <StoryImage
-                        {...img.laurentiuWheel}
-                        className="aspect-[3/4]"
-                        sizes="240px"
-                      />
-                      <p className="mt-3 text-sm text-muted">
-                        {laurentiu.caption}
-                      </p>
-                    </div>
-
-                    <blockquote className="space-y-4">
-                      {laurentiu.paragraphs.map((paragraph) => (
-                        <p
-                          key={paragraph.slice(0, 48)}
-                          className="text-base leading-relaxed text-muted md:text-lg"
-                        >
-                          {paragraph}
-                        </p>
-                      ))}
-                    </blockquote>
-
-                    <div className="clear-both" />
-                  </div>
                 </div>
               </div>
             </div>

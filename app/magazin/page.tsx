@@ -14,7 +14,7 @@ export const metadata = createPageMetadata({
   description:
     "Magazinul online Ceramica Pietraru este în construcție. Ne găsiți offline în Horezu.",
   path: "/magazin",
-  image: "/images/hero/pot-building.png",
+  image: "/images/atelier/atelier-fatada.jpg",
 });
 
 export default function ShopPage() {
@@ -83,14 +83,15 @@ export default function ShopPage() {
         </Reveal>
 
         <Reveal delay={0.12} className="relative mx-auto w-full max-w-lg lg:max-w-none">
-          <div className="relative aspect-[4/5] w-full sm:aspect-[5/4] lg:aspect-[4/5]">
+          <div className="overflow-hidden rounded-[16px] border border-border bg-warm-white">
             <Image
-              src="/images/hero/pot-building.png"
-              alt="Magazinul Ceramica Pietraru din Horezu — clădirea în formă de vas"
-              fill
+              src="/images/atelier/atelier-fatada.jpg"
+              alt="Atelierul Ceramica Pietraru din Horezu — clădirea în formă de vas"
+              width={972}
+              height={1024}
               priority
               sizes="(max-width: 1024px) 90vw, 45vw"
-              className="object-contain object-center"
+              className="h-auto w-full"
             />
           </div>
         </Reveal>

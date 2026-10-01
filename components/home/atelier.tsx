@@ -4,9 +4,13 @@ import { Container } from "@/components/ui/container";
 import { DecorativeLine } from "@/components/ui/decorative-line";
 import { getDictionary } from "@/data/i18n/ro";
 import { CONTACT } from "@/lib/contact";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 const copy = getDictionary();
+
+const eyebrowClassName =
+  "mb-4 text-xs font-medium uppercase tracking-[0.22em] text-clay";
 
 export function Atelier() {
   return (
@@ -18,21 +22,24 @@ export function Atelier() {
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[16px] border border-border bg-warm-white">
-              <iframe
-                src={CONTACT.mapEmbedUrl}
-                title="Ceramica Pietraru pe Google Maps"
-                className="absolute inset-0 h-full w-full border-0"
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
+            <p className={`${eyebrowClassName} lg:hidden`}>
+              {copy.atelier.eyebrow}
+            </p>
+            <div className="overflow-hidden rounded-[16px] border border-border bg-warm-white">
+              <Image
+                src="/images/atelier/atelier-fatada.jpg"
+                alt="Atelierul Ceramica Pietraru din Horezu — clădirea în formă de vas"
+                width={972}
+                height={1024}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="h-auto w-full"
               />
             </div>
           </Reveal>
 
           <div>
             <Reveal>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-clay">
+              <p className={`${eyebrowClassName} hidden lg:block`}>
                 {copy.atelier.eyebrow}
               </p>
               <h2

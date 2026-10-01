@@ -26,16 +26,16 @@ export const processImages = [
 
 export const familyStoryImages = {
   mischiuCouple: {
-    src: "/images/story/mischiu-couple.jpg",
-    alt: "Dumitru și Ioana Mischiu în fața atelierului din Horezu, pe un perete acoperit cu farfurii tradiționale",
+    src: "/images/story/mischiu-decor.jpg",
+    alt: "Meșter din familia Mischiu decorând o farfurie de Horezu, în port popular",
   },
   dumitruWheel: {
-    src: "/images/story/dumitru-wheel.jpg",
+    src: "/images/story/dumitru-roda.jpg",
     alt: "Dumitru Mischiu modelând lutul la roata olarului",
   },
   ioanaPlate: {
-    src: "/images/story/ioana-plate.jpg",
-    alt: "Ioana Mischiu ținând o farfurie de Horezu cu motivul cocoșului",
+    src: "/images/story/ioana-decor.jpg",
+    alt: "Ioana Mischiu decorând un vas de ceramică în atelier",
   },
   nicoletaBowl: {
     src: "/images/story/nicoleta-bowl.jpg",

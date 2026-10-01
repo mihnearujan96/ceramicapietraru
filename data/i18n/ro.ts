@@ -66,10 +66,11 @@ export const ro = {
     lead: "În Horezu, ceramica nu este doar un meșteșug, ci o tradiție transmisă din generație în generație.",
     mischiu: {
       title: "Familia Mischiu",
+      caption: "La decorat, în port popular",
       intro:
         "Povestea noastră pornește din familia Mischiu, unde olăritul a fost învățat încă din copilărie — din mâinile lui Dumitru și ale Ioanei.",
       dumitru: {
-        caption: "Dumitru, la râșniță",
+        caption: "Dumitru, la roată",
         quotes: [
           "Eu sunt născut din neam de olari. Pe tata tot Dumitru l-a chemat și de la el am început să învăț să dau cu piciorul la roată, iar la 7 ani știam să fac cești de țuică. Tot la 7 ani m-am dus la târg cu castroane și cu cănițe lucrate de mine, și din banii de la vânzare am cumpărat o rață, ca s-o duc acasă. Nu m-am gândit să-mi iau biscuiți, bomboane sau altceva pentru mine, ca orice copil — știam că aveam greutăți acasă și părinții mei s-au bucurat.",
           "Am îndrăgit de mic meseria și nu am mai lăsat-o. Ne-am făcut un nume cu ea. Din 1966, de când m-am căsătorit cu Onița, lucrăm împreună. La mine s-a învățat ea să înfloreze. Pe Mihaela și pe Nicoleta, fetele noastre, tot noi le-am învățat. Acum amândouă lucrează în ateliere proprii și trăiesc bine din meserie.",
@@ -77,7 +78,7 @@ export const ro = {
         ],
       },
       ioana: {
-        caption: "Ioana, prezintă cocoșul de Horezu",
+        caption: "Ioana, decorând vasul",
         quotes: [
           "Mama m-a născut acasă, și o femeie m-a luat și m-a pus pe roata lu’ tăticu’ și m-a ursit ca să-nvăț meseria lu’ tata — și puteam eu să tot învăț la carte, că, dacă a fost ursitoarea asta, tot olăriță aș fi ajuns. Da’ nu-mi pare rău deloc, că, dacă ar fi să mă mai nasc o dată, tot asta aș face. Eu m-am născut la Slătioara; tatăl meu, Victor Gheorghiță, făcea oale nesmălțuite, de fiert la vatră, de care știam și eu să fac până să mă mărit.",
           "Când eram copil, când tăticu’ gătea pământul, luam și eu câte un pic și-l modelam, și el, când mă vedea că-mi place, mă învăța să fac câte o pisicuță, o găinușă. Asta pe la 3–4 ani; pe la 5–6 mă urcam la roată să fac castroane și cănițe. M-am învățat cu pământul de Slătioara și am continuat, după ce m-am căsătorit, cu cel de Horezu. Pe soțul meu l-am cunoscut tot datorită oalelor. Când am făcut prima cunoștință, eram la târg la Horezu: eu cu oale nesmălțuite pentru sarmale și prins lapte, iar el cu cănițe de țuică.",

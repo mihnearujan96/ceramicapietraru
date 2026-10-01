@@ -16,7 +16,7 @@ const plates = [
   {
     id: "brand",
     title: "Ceramica Pietraru",
-    image: "/images/collections/plate-ceramica-pietraru.png?v=2",
+    image: "/images/collections/plate-ceramica-pietraru.png?v=3",
     alt: "Farfurie Ceramica Pietraru cu cocosul de Horezu",
   },
   ...copy.collections.motifs.map((motif, index) => ({

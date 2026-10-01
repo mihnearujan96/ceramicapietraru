@@ -3,6 +3,11 @@
 import { StaggerText } from "@/components/animation/stagger-text";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import {
+  horezuWaveDots,
+  horezuWavePath,
+  horezuWaveViewBox,
+} from "@/components/ui/decorative-line";
 import { getDictionary } from "@/data/i18n/ro";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
@@ -61,7 +66,7 @@ export function Hero() {
           />
 
           <motion.div
-            className="mx-auto mt-2 w-[min(100%,10.5rem)] text-clay/50"
+            className="mx-auto mt-3.5 w-[min(100%,20rem)] text-clay"
             initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, delay: 0.42 }}
@@ -186,17 +191,17 @@ export function Hero() {
           />
 
           <motion.div
-            className="pointer-events-none absolute -left-4 top-[40%] -z-10 w-[min(100%,420px)] text-clay/35 md:-left-8"
+            className="mt-5 w-full max-w-md text-clay"
             initial={false}
             animate={{ opacity: 1 }}
-            transition={{ duration: reduceMotion ? 0 : 1.2, delay: 0.5 }}
+            transition={{ duration: reduceMotion ? 0 : 0.8, delay: 0.45 }}
             aria-hidden
           >
             <DecorativeLineDraw reduceMotion={reduceMotion} />
           </motion.div>
 
           <motion.p
-            className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg"
+            className="mt-5 max-w-md text-base leading-relaxed text-muted md:text-lg"
             initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: reduceMotion ? 0 : 0.7, delay: 0.55 }}
@@ -245,47 +250,36 @@ function DecorativeLineDraw({
   reduceMotion?: boolean;
 }) {
   return (
-    <svg viewBox="0 0 420 80" fill="none" className="h-auto w-full">
+    <svg viewBox={horezuWaveViewBox} fill="none" className="h-auto w-full overflow-visible">
       <motion.path
-        d="M8 42c36-18 70-18 104 0s70 18 104 0 70-18 104 0 64 16 92 4"
+        d={horezuWavePath}
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="16"
         strokeLinecap="round"
+        strokeLinejoin="round"
         initial={false}
         animate={{ pathLength: 1 }}
         transition={{
-          duration: reduceMotion ? 0 : 1.4,
+          duration: reduceMotion ? 0 : 1.5,
           ease: "easeInOut",
           delay: reduceMotion ? 0 : 0.35,
         }}
       />
-      <motion.circle
-        cx="112"
-        cy="34"
-        r="3"
-        fill="currentColor"
-        initial={false}
-        animate={{ opacity: 1 }}
-        transition={{ delay: reduceMotion ? 0 : 1 }}
-      />
-      <motion.circle
-        cx="216"
-        cy="50"
-        r="3"
-        fill="currentColor"
-        initial={false}
-        animate={{ opacity: 1 }}
-        transition={{ delay: reduceMotion ? 0 : 1.15 }}
-      />
-      <motion.circle
-        cx="320"
-        cy="34"
-        r="3"
-        fill="currentColor"
-        initial={false}
-        animate={{ opacity: 1 }}
-        transition={{ delay: reduceMotion ? 0 : 1.3 }}
-      />
+      {horezuWaveDots.map((dot, index) => (
+        <motion.circle
+          key={`${dot.cx}-${dot.cy}`}
+          cx={dot.cx}
+          cy={dot.cy}
+          r={dot.r}
+          fill="currentColor"
+          initial={false}
+          animate={{ opacity: 1 }}
+          transition={{
+            delay: reduceMotion ? 0 : 0.7 + index * 0.14,
+            duration: reduceMotion ? 0 : 0.35,
+          }}
+        />
+      ))}
     </svg>
   );
 }
