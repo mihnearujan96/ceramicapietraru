@@ -26,7 +26,7 @@ export const ro = {
     line3: "Din Horezu.",
     supporting:
       "Ceramică lucrată manual în Horezu — o tradiție dusă mai departe din generație în generație.",
-    ctaPrimary: "Descoperă colecția",
+    ctaPrimary: "Colecție",
     ctaSecondary: "Povestea noastră",
   },
   intro: {
@@ -141,33 +141,33 @@ export const ro = {
     viewDetails: "Vezi detalii",
     motifs: [
       {
-        title: "Pești — motiv creștinesc",
-        image: "/images/collections/motifs/pesti-motiv-crestinesc.png",
-        alt: "Farfurie cu pești — motiv creștinesc din ceramica de Horezu",
+        title: "Pești - motiv creștinesc",
+        image: "/images/collections/motifs/pesti-motiv-crestinesc.webp",
+        alt: "Farfurie cu pești - motiv creștinesc din ceramica de Horezu",
       },
       {
         title: "Arborele vieții",
-        image: "/images/collections/motifs/arborele-vietii.png",
+        image: "/images/collections/motifs/arborele-vietii.webp",
         alt: "Farfurie cu arborele vieții din ceramica de Horezu",
       },
       {
         title: "Arborele, cocoșul și șarpele casei",
-        image: "/images/collections/motifs/arborele-cocosul-sarpele.png",
+        image: "/images/collections/motifs/arborele-cocosul-sarpele.webp",
         alt: "Farfurie cu arborele, cocoșul și șarpele casei",
       },
       {
         title: "Cocoșul și spirala vieții",
-        image: "/images/collections/motifs/cocosul-spirala-vietii.png",
+        image: "/images/collections/motifs/cocosul-spirala-vietii.webp",
         alt: "Farfurie cu cocoșul și spirala vieții",
       },
       {
         title: "Șarpele casei",
-        image: "/images/collections/motifs/sarpele-casei.png",
+        image: "/images/collections/motifs/sarpele-casei.webp",
         alt: "Farfurie cu șarpele casei din ceramica de Horezu",
       },
       {
         title: "Spicul de grâu",
-        image: "/images/collections/motifs/spicul-de-grau.png",
+        image: "/images/collections/motifs/spicul-de-grau.webp",
         alt: "Farfurie cu spicul de grâu din ceramica de Horezu",
       },
     ],

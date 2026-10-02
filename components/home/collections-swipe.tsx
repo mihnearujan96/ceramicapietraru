@@ -11,7 +11,7 @@ const plates = [
   {
     id: "brand",
     title: "Ceramica Pietraru",
-    image: "/images/collections/plate-ceramica-pietraru.png?v=3",
+    image: "/images/collections/plate-ceramica-pietraru.webp",
     alt: "Farfurie Ceramica Pietraru cu cocosul de Horezu",
   },
   ...copy.collections.motifs.map((motif, index) => ({
@@ -136,7 +136,6 @@ export function CollectionsSwipe() {
                 fill
                 sizes="(max-width: 640px) 72vw, (max-width: 1024px) 48vw, 384px"
                 priority={index === 0}
-                unoptimized
                 className="relative z-10 object-contain drop-shadow-[0_18px_28px_rgba(45,38,34,0.28)] transition-transform duration-500 group-hover:-translate-y-1"
               />
             </div>

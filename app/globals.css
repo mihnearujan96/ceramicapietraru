@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@custom-variant phone-landscape {
+  @media (orientation: landscape) and (max-height: 520px) {
+    @slot;
+  }
+}
+
+@custom-variant tall-landscape {
+  @media (orientation: landscape) and (min-height: 521px) {
+    @slot;
+  }
+}
+
 :root {
   --background: #fbf8f2;
   --foreground: #171513;

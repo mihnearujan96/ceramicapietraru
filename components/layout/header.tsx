@@ -8,7 +8,7 @@ import { mainNavigation } from "@/data/navigation";
 import { getDictionary } from "@/data/i18n/ro";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ShoppingBag, X } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,6 +22,11 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { itemCount, openCart } = useCart();
   const reduceMotion = useReducedMotion();
+
+  function goHome() {
+    setMenuOpen(false);
+    document.body.style.overflow = "";
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -51,13 +56,13 @@ export function Header() {
           "fixed inset-x-0 top-0 z-50 overflow-visible transition-[background-color,backdrop-filter,border-color,box-shadow] duration-300",
           scrolled
             ? "border-b border-border bg-cream/95 shadow-[0_1px_0_rgba(68,47,38,0.06)] backdrop-blur-md"
-            : "border-b border-transparent bg-cream/70 backdrop-blur-[2px] lg:bg-transparent lg:backdrop-blur-none",
+            : "border-b border-transparent bg-cream/70 backdrop-blur-[2px] xl:bg-transparent xl:backdrop-blur-none",
         )}
       >
         {/* Mobile: spacer | centered logo | cart + menu */}
         <Container
           className={cn(
-            "relative flex items-center justify-between lg:hidden",
+            "relative flex items-center justify-between xl:hidden",
             scrolled ? "h-14" : "h-[5.5rem]",
           )}
         >
@@ -67,6 +72,7 @@ export function Header() {
             <Logo
               height={scrolled ? 140 : 200}
               priority
+              onClick={goHome}
               className={cn(
                 "w-auto transition-[height,max-width] duration-300",
                 scrolled
@@ -128,13 +134,14 @@ export function Header() {
         {/* Desktop */}
         <Container
           className={cn(
-            "hidden items-center justify-between gap-4 lg:flex",
+            "hidden items-center justify-between gap-4 xl:flex",
             scrolled ? "py-3" : "py-4",
           )}
         >
           <Logo
             height={scrolled ? 120 : 160}
             priority
+            onClick={goHome}
             className={cn(
               "w-auto max-w-none",
               scrolled ? "h-[100px]" : "h-[128px]",
@@ -193,29 +200,13 @@ export function Header() {
       <AnimatePresence>
         {menuOpen ? (
           <motion.div
-            className="fixed inset-0 z-40 bg-cream lg:hidden"
+            className="fixed inset-0 z-40 bg-cream xl:hidden"
             initial={reduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
             <Container className="flex h-full flex-col pb-10 pt-28">
-              <div className="mb-8 flex items-center justify-between gap-4">
-                <Logo
-                  height={160}
-                  onClick={() => setMenuOpen(false)}
-                  className="h-14 w-auto max-w-[9rem]"
-                />
-                <button
-                  type="button"
-                  onClick={() => setMenuOpen(false)}
-                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-[12px]"
-                  aria-label={copy.nav.closeMenu}
-                >
-                  <X className="size-5" />
-                </button>
-              </div>
-
               <nav aria-label="Mobil" className="flex flex-1 flex-col gap-2">
                 {mainNavigation.map((item, index) => (
                   <motion.div

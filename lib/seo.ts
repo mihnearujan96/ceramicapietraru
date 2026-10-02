@@ -26,7 +26,7 @@ export function localBusinessJsonLd() {
         name: SITE.name,
         description,
         url: SITE.url,
-        image: absoluteUrl("/images/atelier/atelier-fatada.jpg"),
+        image: absoluteUrl("/images/atelier/atelier-fatada.webp"),
         telephone: CONTACT.phones.map((phone) => phone.tel),
         address: {
           "@type": "PostalAddress",

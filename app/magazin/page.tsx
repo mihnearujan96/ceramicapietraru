@@ -14,7 +14,7 @@ export const metadata = createPageMetadata({
   description:
     "Magazinul online Ceramica Pietraru este în construcție. Până atunci, ne găsiți la atelierul din Horezu, județul Vâlcea.",
   path: "/magazin",
-  image: "/images/atelier/atelier-fatada.jpg",
+  image: "/images/atelier/atelier-fatada.webp",
 });
 
 export default function ShopPage() {
@@ -85,7 +85,7 @@ export default function ShopPage() {
         <Reveal delay={0.12} className="relative mx-auto w-full max-w-lg lg:max-w-none">
           <div className="overflow-hidden rounded-[16px] border border-border bg-warm-white">
             <Image
-              src="/images/atelier/atelier-fatada.jpg"
+              src="/images/atelier/atelier-fatada.webp"
               alt="Atelierul Ceramica Pietraru din Horezu — clădirea în formă de vas"
               width={972}
               height={1024}

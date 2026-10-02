@@ -1,6 +1,10 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { getDictionary } from "@/data/i18n/ro";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 
 const copy = getDictionary();
 
@@ -31,9 +35,21 @@ export function Logo({
   priority = false,
   onClick,
 }: LogoProps) {
+  const pathname = usePathname();
   const src = variant === "light" ? LOGO_SRC.light : LOGO_SRC.default;
   // Original artboard aspect ~1011×829
   const width = Math.round(height * (1011 / 829));
+
+  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    onClick?.();
+    if (href !== "/" || pathname !== "/") return;
+    event.preventDefault();
+    if (window.location.hash) {
+      window.history.replaceState(null, "", "/");
+    }
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, left: 0, behavior: reduce ? "auto" : "smooth" });
+  }
 
   const image = (
     // Vector SVG scales crisply — avoid next/image rasterization
@@ -56,7 +72,8 @@ export function Logo({
   return (
     <Link
       href={href}
-      onClick={onClick}
+      scroll
+      onClick={handleClick}
       className="inline-flex shrink-0 items-center"
       aria-label={copy.brand.name}
     >

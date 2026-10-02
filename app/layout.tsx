@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Manrope } from "next/font/google";
+import Script from "next/script";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/layout/cart-drawer";
 import { Footer } from "@/components/layout/footer";
@@ -33,6 +34,9 @@ export default function RootLayout({
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Script id="reset-scroll" strategy="beforeInteractive">
+          {`try{history.scrollRestoration="manual"}catch(e){}window.addEventListener("pageshow",function(e){if(e.persisted||location.hash)return;scrollTo(0,0)})`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

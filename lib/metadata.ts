@@ -39,9 +39,9 @@ export const defaultMetadata: Metadata = {
     description: defaultDescription,
     images: [
       {
-        url: "/images/hero/pot-building.png",
-        width: 856,
-        height: 683,
+        url: "/images/hero/pot-building-og.jpg",
+        width: 1200,
+        height: 957,
         alt: "Magazinul Ceramica Pietraru — clădirea în formă de vas din Horezu",
       },
     ],
@@ -50,7 +50,7 @@ export const defaultMetadata: Metadata = {
     card: "summary_large_image",
     title: defaultTitle,
     description: defaultDescription,
-    images: ["/images/hero/pot-building.png"],
+    images: ["/images/hero/pot-building-og.jpg"],
   },
   other: {
     "geo.region": CONTACT.regionCode,
@@ -91,7 +91,7 @@ export function createPageMetadata({
   image?: string;
 }): Metadata {
   const url = absoluteUrl(path);
-  const ogImage = image ?? "/images/hero/pot-building.png";
+  const ogImage = image ?? "/images/hero/pot-building-og.jpg";
 
   return {
     title,

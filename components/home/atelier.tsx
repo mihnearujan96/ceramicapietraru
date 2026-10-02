@@ -27,7 +27,7 @@ export function Atelier() {
             </p>
             <div className="overflow-hidden rounded-[16px] border border-border bg-warm-white">
               <Image
-                src="/images/atelier/atelier-fatada.jpg"
+                src="/images/atelier/atelier-fatada.webp"
                 alt="Atelierul Ceramica Pietraru din Horezu — clădirea în formă de vas"
                 width={972}
                 height={1024}

@@ -102,12 +102,12 @@ export function FamilyStory() {
         </Reveal>
 
         {/* Mobile: horizontal swipe story */}
-        <div className="mt-12 md:hidden">
+        <div className="mt-12 lg:hidden">
           <FamilyStorySwipe />
         </div>
 
-        {/* Desktop / tablet: editorial layout */}
-        <div className="mt-16 hidden md:block md:mt-20">
+        {/* Desktop: editorial layout */}
+        <div className="mt-16 hidden lg:mt-20 lg:block">
           {/* Familia Pietraru */}
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-12 xl:gap-14">
             <div className="mx-auto w-full max-w-[320px] lg:sticky lg:top-28 lg:mx-0 lg:max-w-[360px]">
@@ -253,31 +253,29 @@ export function FamilyStory() {
                 </p>
               </Reveal>
 
-              <blockquote className="mt-8 space-y-5 border-l border-clay/30 pl-5 md:mt-10 md:pl-6">
-                {mischiu.dumitru.quotes.slice(0, 1).map((quote) => (
-                  <Reveal key={quote.slice(0, 40)}>
-                    <p className="text-base leading-relaxed text-muted md:text-lg">
-                      {quote}
-                    </p>
-                  </Reveal>
-                ))}
-              </blockquote>
+              <div className="mt-8 grid items-start gap-6 md:mt-10 md:grid-cols-[minmax(200px,280px)_minmax(0,1fr)] md:gap-8">
+                <Reveal>
+                  <StoryImage
+                    {...img.dumitruWheel}
+                    className="aspect-[3/4] w-full"
+                    sizes="(max-width: 1024px) 70vw, 280px"
+                    imageClassName="object-[center_35%]"
+                  />
+                  <p className="mt-3 text-sm text-muted">
+                    {mischiu.dumitru.caption}
+                  </p>
+                </Reveal>
 
-              <Reveal className="mt-8 md:mt-10">
-                <div className="grid grid-cols-[1fr_auto] items-end gap-4 sm:gap-5">
-                  <div>
-                    <StoryImage
-                      {...img.dumitruWheel}
-                      className="aspect-[3/4] max-w-[320px]"
-                      sizes="(max-width: 1024px) 70vw, 320px"
-                      imageClassName="object-[center_35%]"
-                    />
-                    <p className="mt-3 text-sm text-muted">
-                      {mischiu.dumitru.caption}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
+                <blockquote className="border-l border-clay/30 pl-5 md:pl-6">
+                  {mischiu.dumitru.quotes.slice(0, 1).map((quote) => (
+                    <Reveal key={quote.slice(0, 40)}>
+                      <p className="text-base leading-relaxed text-muted md:text-lg">
+                        {quote}
+                      </p>
+                    </Reveal>
+                  ))}
+                </blockquote>
+              </div>
 
               <blockquote className="mt-8 space-y-5 border-l border-clay/30 pl-5 md:pl-6">
                 {mischiu.dumitru.quotes.slice(1).map((quote) => (
