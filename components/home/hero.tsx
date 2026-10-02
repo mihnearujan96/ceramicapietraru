@@ -144,8 +144,8 @@ export function Hero() {
               width={1712}
               height={1366}
               priority
-              quality={90}
-              sizes="100vw"
+              quality={75}
+              sizes="(min-width: 1280px) 1px, 100vw"
               className="absolute bottom-0 drop-shadow-[0_16px_32px_rgba(61,40,23,0.14)] portrait:left-1/2 portrait:h-full portrait:min-h-full portrait:w-auto portrait:min-w-[115%] portrait:max-w-none portrait:-translate-x-1/2 portrait:object-cover portrait:object-bottom tall-landscape:left-0 tall-landscape:h-full tall-landscape:min-h-0 tall-landscape:w-full tall-landscape:min-w-0 tall-landscape:max-w-full tall-landscape:translate-x-0 tall-landscape:object-contain tall-landscape:object-bottom phone-landscape:bottom-3 phone-landscape:left-0 phone-landscape:h-auto phone-landscape:max-h-[calc(100%-0.75rem)] phone-landscape:min-h-0 phone-landscape:w-full phone-landscape:min-w-0 phone-landscape:max-w-full phone-landscape:translate-x-0 phone-landscape:object-contain"
             />
           </motion.div>
@@ -254,8 +254,8 @@ export function Hero() {
             width={1712}
             height={1366}
             priority
-            quality={90}
-            sizes="(min-width: 1280px) 60vw, 100vw"
+            quality={75}
+            sizes="(min-width: 1280px) 60vw, 1px"
             className="h-auto w-full object-contain object-bottom drop-shadow-[0_20px_36px_rgba(61,40,23,0.14)]"
           />
         </motion.div>
