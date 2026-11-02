@@ -13,12 +13,12 @@ export const mainNavigation: NavItem[] = [
 
 export const footerNavigation = {
   story: [
-    { href: "/#povestea", label: "Povestea noastră" },
-    { href: "/#colectii", label: "Colecții" },
+    { href: "/#povestea", labelKey: "story" },
+    { href: "/#colectii", labelKey: "collections" },
   ],
   atelier: [
-    { href: "/#atelier", label: "Atelierul" },
-    { href: "/#contact", label: "Contact" },
-    { href: "/magazin", label: "Magazin" },
+    { href: "/#atelier", labelKey: "atelier" },
+    { href: "/#contact", labelKey: "contact" },
+    { href: "/magazin", labelKey: "shop" },
   ],
 } as const;

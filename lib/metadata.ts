@@ -1,55 +1,47 @@
 import type { Metadata } from "next";
+import { getDictionary } from "@/data/i18n/ro";
 import { CONTACT, SITE } from "@/lib/contact";
+import type { Locale } from "@/lib/locale";
 import { absoluteUrl } from "@/lib/utils";
 
-const defaultTitle = "Ceramica Pietraru | Ceramică de Horezu";
-const defaultDescription =
-  "Ceramica Pietraru — ceramică de Horezu, lucrată manual în atelierul din Horezu, județul Vâlcea. Motive tradiționale, pictate cu cornul.";
+export function buildMetadata(locale: Locale): Metadata {
+  const copy = getDictionary(locale);
 
-export const defaultMetadata: Metadata = {
+  return {
   metadataBase: new URL(SITE.url),
   title: {
-    default: defaultTitle,
+    default: copy.meta.title,
     template: `%s | ${SITE.name}`,
   },
-  description: defaultDescription,
+  description: copy.meta.description,
   applicationName: SITE.name,
   authors: [{ name: SITE.name }],
   creator: SITE.name,
   publisher: SITE.name,
-  keywords: [
-    "Ceramica Pietraru",
-    "ceramică de Horezu",
-    "Horezu",
-    "Vâlcea",
-    "atelier ceramică Horezu",
-    "ceramică manuală",
-    "olărit",
-    "România",
-  ],
+  keywords: [...copy.meta.keywords],
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    locale: SITE.locale,
+    locale: locale === "en" ? "en_US" : "ro_RO",
     url: absoluteUrl("/"),
     siteName: SITE.name,
-    title: defaultTitle,
-    description: defaultDescription,
+    title: copy.meta.title,
+    description: copy.meta.description,
     images: [
       {
         url: "/images/hero/pot-building-og.jpg",
         width: 1200,
         height: 957,
-        alt: "Magazinul Ceramica Pietraru — clădirea în formă de vas din Horezu",
+        alt: copy.meta.ogAlt,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: defaultTitle,
-    description: defaultDescription,
+    title: copy.meta.title,
+    description: copy.meta.description,
     images: ["/images/hero/pot-building-og.jpg"],
   },
   other: {
@@ -77,18 +69,21 @@ export const defaultMetadata: Metadata = {
     icon: [{ url: "/images/brand/logo-mark.svg", type: "image/svg+xml" }],
     apple: [{ url: "/images/brand/logo.png", type: "image/png" }],
   },
-};
+  };
+}
 
 export function createPageMetadata({
   title,
   description,
   path = "/",
   image,
+  locale = "ro",
 }: {
   title: string;
   description: string;
   path?: string;
   image?: string;
+  locale?: Locale;
 }): Metadata {
   const url = absoluteUrl(path);
   const ogImage = image ?? "/images/hero/pot-building-og.jpg";
@@ -101,6 +96,7 @@ export function createPageMetadata({
       title,
       description,
       url,
+      locale: locale === "en" ? "en_US" : "ro_RO",
       images: [{ url: ogImage, alt: title }],
     },
     twitter: {

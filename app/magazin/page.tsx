@@ -4,20 +4,25 @@ import { Container } from "@/components/ui/container";
 import { DecorativeLine } from "@/components/ui/decorative-line";
 import { getDictionary } from "@/data/i18n/ro";
 import { CONTACT } from "@/lib/contact";
+import { getLocale } from "@/lib/get-locale";
 import { createPageMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
 import Image from "next/image";
 
-const copy = getDictionary();
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const copy = getDictionary(locale);
+  return createPageMetadata({
+    title: copy.meta.shopTitle,
+    description: copy.meta.shopDescription,
+    path: "/magazin",
+    image: "/images/atelier/atelier-fatada.webp",
+    locale,
+  });
+}
 
-export const metadata = createPageMetadata({
-  title: "Magazin",
-  description:
-    "Magazinul online Ceramica Pietraru este în construcție. Până atunci, ne găsiți la atelierul din Horezu, județul Vâlcea.",
-  path: "/magazin",
-  image: "/images/atelier/atelier-fatada.webp",
-});
-
-export default function ShopPage() {
+export default async function ShopPage() {
+  const copy = getDictionary(await getLocale());
   return (
     <section className="relative isolate min-h-[100svh] overflow-hidden bg-cream grain">
       <Container className="relative z-10 grid min-h-[100svh] items-center gap-10 pb-16 pt-32 md:gap-14 md:pb-20 md:pt-36 lg:grid-cols-2 lg:gap-16">
@@ -43,7 +48,7 @@ export default function ShopPage() {
                 {copy.shop.addressLabel}
               </dt>
               <dd className="mt-1.5 text-sm leading-relaxed text-foreground md:text-base">
-                {CONTACT.address}
+                {copy.contact.address}
               </dd>
             </div>
             <div>
@@ -51,7 +56,7 @@ export default function ShopPage() {
                 {copy.shop.hoursLabel}
               </dt>
               <dd className="mt-1.5 text-sm leading-relaxed text-foreground md:text-base">
-                {CONTACT.hours}
+                {copy.contact.hoursValue}
               </dd>
             </div>
             <div>
@@ -86,7 +91,7 @@ export default function ShopPage() {
           <div className="overflow-hidden rounded-[16px] border border-border bg-warm-white">
             <Image
               src="/images/atelier/atelier-fatada.webp"
-              alt="Atelierul Ceramica Pietraru din Horezu — clădirea în formă de vas"
+              alt={copy.atelier.imageAlt}
               width={972}
               height={1024}
               priority

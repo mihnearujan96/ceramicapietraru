@@ -1,4 +1,6 @@
+import { getDictionary } from "@/data/i18n/ro";
 import { CONTACT, SITE } from "@/lib/contact";
+import type { Locale } from "@/lib/locale";
 import { absoluteUrl } from "@/lib/utils";
 
 const WEEKDAYS = [
@@ -11,10 +13,9 @@ const WEEKDAYS = [
   "Sunday",
 ] as const;
 
-const description =
-  "Ceramica Pietraru — ceramică de Horezu, lucrată manual în atelierul din Horezu, județul Vâlcea. Motive tradiționale, pictate cu cornul.";
-
-export function localBusinessJsonLd() {
+export function localBusinessJsonLd(locale: Locale = "ro") {
+  const copy = getDictionary(locale);
+  const description = copy.meta.description;
   const id = `${SITE.url}/#atelier`;
 
   return {
@@ -59,15 +60,23 @@ export function localBusinessJsonLd() {
           },
           {
             "@type": "Country",
-            name: "România",
+            name: locale === "en" ? "Romania" : "România",
           },
         ],
-        knowsAbout: [
-          "ceramică de Horezu",
-          "olărit",
-          "pictură cu cornul",
-          "ceramică lucrată manual",
-        ],
+        knowsAbout:
+          locale === "en"
+            ? [
+                "Horezu ceramics",
+                "pottery",
+                "painting with the horn",
+                "handmade ceramics",
+              ]
+            : [
+                "ceramică de Horezu",
+                "olărit",
+                "pictură cu cornul",
+                "ceramică lucrată manual",
+              ],
       },
       {
         "@type": "WebSite",
@@ -75,7 +84,7 @@ export function localBusinessJsonLd() {
         url: SITE.url,
         name: SITE.name,
         description,
-        inLanguage: "ro-RO",
+        inLanguage: locale === "en" ? "en" : "ro-RO",
         publisher: { "@id": id },
       },
     ],
@@ -86,6 +95,7 @@ export function llmsTxt() {
   const home = absoluteUrl("/");
   const shop = absoluteUrl("/magazin");
   const phones = CONTACT.phones.map((phone) => phone.label).join(", ");
+  const description = getDictionary("ro").meta.description;
 
   return `# ${SITE.name}
 
@@ -113,5 +123,20 @@ Ceramica Pietraru este un atelier și magazin de ceramică tradițională în Ho
 
 - [Acasă](${home}): povestea familiilor Mischiu și Pietraru, meșteșugul și atelierul
 - [Magazin](${shop}): magazinul online, momentan în construcție
+
+## English
+
+> ${getDictionary("en").meta.description}
+
+Ceramica Pietraru is a workshop and shop for traditional ceramics in Horezu, Vâlcea County, Romania. The pieces are thrown on the wheel and decorated by hand, with the horn, by Nicoleta and Laurențiu Pietraru, continuing the Mischiu family.
+
+- Address: 26 Tudor Vladimirescu Street, 245800 Horezu, Vâlcea, Romania
+- Hours: daily, 10:00–19:00
+- The ceramics are handmade in Horezu, not cast in series.
+- Motifs include fish, the tree of life, the rooster, the house snake, the ear of wheat, and the spiral.
+- Decoration is drawn with the horn, then the piece is fired at about 1,000 °C.
+- The online shop is under construction; orders are placed at the workshop for now.
+- [Home](${home}): the story of the Mischiu and Pietraru families, the craft, and the workshop
+- [Shop](${shop}): the online shop, currently under construction
 `;
 }

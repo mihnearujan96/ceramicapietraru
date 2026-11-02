@@ -1,5 +1,7 @@
 "use client";
 
+import { useDictionary, useLocale } from "@/components/i18n/locale-provider";
+import { localizeProduct } from "@/data/product-copy";
 import type { Product } from "@/data/products";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -10,6 +12,9 @@ type ProductGalleryProps = {
 };
 
 export function ProductGallery({ product }: ProductGalleryProps) {
+  const copy = useDictionary();
+  const locale = useLocale();
+  const localized = localizeProduct(product, locale);
   const [active, setActive] = useState(0);
   const current = product.images[active] ?? product.images[0];
 
@@ -18,7 +23,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
       <div className="relative aspect-[4/5] overflow-hidden rounded-[16px] border border-border bg-cream">
         <Image
           src={current}
-          alt={`${product.name} — imagine ${active + 1}`}
+          alt={`${localized.name} — ${copy.a11y.image.toLowerCase()} ${active + 1}`}
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
@@ -33,7 +38,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
               <button
                 type="button"
                 onClick={() => setActive(index)}
-                aria-label={`Imagine ${index + 1}`}
+                aria-label={`${copy.a11y.image} ${index + 1}`}
                 aria-current={active === index}
                 className={cn(
                   "relative size-20 overflow-hidden rounded-[12px] border bg-cream transition-colors",

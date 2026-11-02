@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Fraunces, Manrope } from "next/font/google";
 import Script from "next/script";
 import { CartProvider } from "@/components/cart/cart-provider";
+import { LocaleProvider } from "@/components/i18n/locale-provider";
 import { CartDrawer } from "@/components/layout/cart-drawer";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { defaultMetadata } from "@/lib/metadata";
+import { getLocale } from "@/lib/get-locale";
+import { buildMetadata } from "@/lib/metadata";
 import { localBusinessJsonLd } from "@/lib/seo";
 import "./globals.css";
 
@@ -21,16 +23,20 @@ const manrope = Manrope({
   display: "swap",
 });
 
-export const metadata: Metadata = defaultMetadata;
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata(await getLocale());
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
     <html
-      lang="ro"
+      lang={locale}
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
@@ -40,17 +46,19 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd()),
+            __html: JSON.stringify(localBusinessJsonLd(locale)),
           }}
         />
-        <CartProvider>
-          <Header />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <CartDrawer />
-        </CartProvider>
+        <LocaleProvider locale={locale}>
+          <CartProvider>
+            <Header />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+            <Footer />
+            <CartDrawer />
+          </CartProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

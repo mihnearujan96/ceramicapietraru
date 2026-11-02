@@ -4,13 +4,12 @@ import { Reveal } from "@/components/animation/reveal";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { processImages } from "@/data/story";
-import { getDictionary } from "@/data/i18n/ro";
+import { useDictionary } from "@/components/i18n/locale-provider";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 
-const copy = getDictionary();
-
 export function Process() {
+  const copy = useDictionary();
   const reduceMotion = useReducedMotion();
 
   return (
@@ -52,7 +51,7 @@ export function Process() {
                   >
                     <Image
                       src={processImages[index]}
-                      alt={`Etapa ${stage.title}`}
+                      alt={`${copy.a11y.stage} ${stage.title}`}
                       fill
                       sizes="(max-width: 1024px) 100vw, 48vw"
                       className="object-cover"

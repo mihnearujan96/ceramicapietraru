@@ -1,3 +1,6 @@
+import { en } from "@/data/i18n/en";
+import type { Locale } from "@/lib/locale";
+
 export const ro = {
   brand: {
     name: "Ceramica Pietraru",
@@ -28,6 +31,8 @@ export const ro = {
       "Ceramică lucrată manual în Horezu — o tradiție dusă mai departe din generație în generație.",
     ctaPrimary: "Colecție",
     ctaSecondary: "Povestea noastră",
+    imageAlt:
+      "Atelierul Ceramica Pietraru — clădirea în formă de vas din Horezu",
   },
   intro: {
     eyebrow: "Horezu",
@@ -130,6 +135,26 @@ export const ro = {
       "Tradiția a fost dusă mai departe de Nicoleta și Laurențiu Pietraru — în atelier, la târguri și în fiecare piesă lucrată cu mâna.",
     closingLine:
       "O poveste modelată în lut, pictată cu cornul și desăvârșită prin foc.",
+    swipeHint: "Glisează pentru poveste →",
+    readStory: "Citește povestea",
+    slides: {
+      ourAtelier: "Atelierul nostru",
+      keeper: "Păstrătoarea meșteșugului",
+      beside: "Alături, în atelier",
+      firstGeneration: "Generația întâi",
+      atTheWheel: "La roată, din copilărie",
+      destined: "Ursită pentru meșteșug",
+    },
+    images: {
+      pietraru:
+        "Nicoleta și Laurențiu Pietraru în port popular, alături de ceramică de Horezu",
+      nicoleta: "Nicoleta Pietraru prezentând un vas decorat în stil Horezu",
+      laurentiu: "Laurențiu Pietraru finisând un vas de lut în atelier",
+      mischiu:
+        "Meșter din familia Mischiu decorând o farfurie de Horezu, în port popular",
+      dumitru: "Dumitru Mischiu modelând lutul la roata olarului",
+      ioana: "Ioana Mischiu decorând un vas de ceramică în atelier",
+    },
   },
   collections: {
     eyebrow: "Colecție",
@@ -171,6 +196,8 @@ export const ro = {
         alt: "Farfurie cu spicul de grâu din ceramica de Horezu",
       },
     ],
+    swipeHint: "Glisează farfuriile →",
+    brandPlateAlt: "Farfurie Ceramica Pietraru cu cocoșul de Horezu",
   },
   process: {
     eyebrow: "Meșteșug",
@@ -210,6 +237,12 @@ export const ro = {
     phone: "Telefon",
     map: "Vezi pe hartă",
     placeholdersNote: "Datele de contact vor fi actualizate.",
+    imageAlt:
+      "Atelierul Ceramica Pietraru din Horezu — clădirea în formă de vas",
+  },
+  contact: {
+    address: "Strada Tudor Vladimirescu 26, 245800 Horezu, Vâlcea",
+    hoursValue: "Zilnic, 10:00 – 19:00",
   },
   shop: {
     eyebrow: "Magazin online",
@@ -274,15 +307,62 @@ export const ro = {
     contact: "Contact",
     social: "Social",
   },
+  notFound: {
+    title: "Pagina nu a fost găsită.",
+    body: "Poate vasul s-a mutat pe altă poliță. Hai înapoi acasă.",
+  },
+  a11y: {
+    mainNav: "Principal",
+    mobileNav: "Mobil",
+    footer: "Subsol",
+    of: "din",
+    goTo: "Mergi la",
+    chapters: "Capitole",
+    closeStory: "Închide povestea",
+    plates: "Farfurii din colecție",
+    decreaseQty: "Scade cantitatea",
+    increaseQty: "Crește cantitatea",
+    language: "Limbă",
+    romanian: "Română",
+    english: "Engleză",
+    stage: "Etapa",
+    image: "Imagine",
+  },
+  meta: {
+    title: "Ceramica Pietraru | Ceramică de Horezu",
+    description:
+      "Ceramica Pietraru — ceramică de Horezu, lucrată manual în atelierul din Horezu, județul Vâlcea. Motive tradiționale, pictate cu cornul.",
+    shopTitle: "Magazin",
+    shopDescription:
+      "Magazinul online Ceramica Pietraru este în construcție. Până atunci, ne găsiți la atelierul din Horezu, județul Vâlcea.",
+    ogAlt: "Magazinul Ceramica Pietraru — clădirea în formă de vas din Horezu",
+    keywords: [
+      "Ceramica Pietraru",
+      "ceramică de Horezu",
+      "Horezu",
+      "Vâlcea",
+      "atelier ceramică Horezu",
+      "ceramică manuală",
+      "olărit",
+      "România",
+    ],
+  },
 } as const;
 
-export type Dictionary = typeof ro;
+type Widen<T> = T extends string
+  ? string
+  : T extends number
+    ? number
+    : T extends boolean
+      ? boolean
+      : T extends readonly (infer U)[]
+        ? readonly Widen<U>[]
+        : T extends object
+          ? { [K in keyof T]: Widen<T[K]> }
+          : T;
 
-/**
- * Translation architecture: swap `ro` for another locale dictionary later.
- * Keep keys stable across locales.
- */
-export function getDictionary(locale: "ro" = "ro"): Dictionary {
-  if (locale === "ro") return ro;
-  return ro;
+export type Dictionary = Widen<typeof ro>;
+
+export function getDictionary(locale: Locale = "ro") {
+  return locale === "en" ? en : ro;
 }

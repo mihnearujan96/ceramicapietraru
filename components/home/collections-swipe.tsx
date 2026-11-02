@@ -1,28 +1,29 @@
 "use client";
 
-import { getDictionary } from "@/data/i18n/ro";
+import { useDictionary } from "@/components/i18n/locale-provider";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useRef, useState, type KeyboardEvent } from "react";
-
-const copy = getDictionary();
-
-const plates = [
-  {
-    id: "brand",
-    title: "Ceramica Pietraru",
-    image: "/images/collections/plate-ceramica-pietraru.webp",
-    alt: "Farfurie Ceramica Pietraru cu cocosul de Horezu",
-  },
-  ...copy.collections.motifs.map((motif, index) => ({
-    id: `motif-${index}`,
-    title: motif.title,
-    image: motif.image,
-    alt: motif.alt,
-  })),
-];
+import { useMemo, useRef, useState, type KeyboardEvent } from "react";
 
 export function CollectionsSwipe() {
+  const copy = useDictionary();
+  const plates = useMemo(
+    () => [
+      {
+        id: "brand",
+        title: copy.brand.name,
+        image: "/images/collections/plate-ceramica-pietraru.webp",
+        alt: copy.collections.brandPlateAlt,
+      },
+      ...copy.collections.motifs.map((motif, index) => ({
+        id: `motif-${index}`,
+        title: motif.title,
+        image: motif.image,
+        alt: motif.alt,
+      })),
+    ],
+    [copy],
+  );
   const scrollerRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef(0);
   const [active, setActive] = useState(0);
@@ -96,7 +97,7 @@ export function CollectionsSwipe() {
           {String(plates.length).padStart(2, "0")}
         </p>
         <p className="max-w-[70%] truncate text-right text-xs tracking-[0.08em] text-muted">
-          {active === 0 ? "Glisează farfuriile →" : plates[active]?.title}
+          {active === 0 ? copy.collections.swipeHint : plates[active]?.title}
         </p>
       </div>
 
@@ -115,7 +116,7 @@ export function CollectionsSwipe() {
             key={plate.id}
             data-plate
             data-index={index}
-            aria-label={`${index + 1} din ${plates.length}: ${plate.title}`}
+            aria-label={`${index + 1} ${copy.a11y.of} ${plates.length}: ${plate.title}`}
             className={cn(
               "w-[min(72vw,20rem)] shrink-0 snap-start sm:w-[min(48vw,22rem)] md:w-[min(38vw,24rem)]",
               index === plates.length - 1 && "snap-end",
@@ -152,7 +153,7 @@ export function CollectionsSwipe() {
       <div
         className="mt-4 flex items-center justify-center gap-2"
         role="tablist"
-        aria-label="Farfurii din colecție"
+        aria-label={copy.a11y.plates}
       >
         {plates.map((plate, index) => (
           <button
@@ -160,7 +161,7 @@ export function CollectionsSwipe() {
             type="button"
             role="tab"
             aria-selected={active === index}
-            aria-label={`Mergi la ${plate.title}`}
+            aria-label={`${copy.a11y.goTo} ${plate.title}`}
             onClick={() => scrollTo(index)}
             className={cn(
               "h-1.5 rounded-full transition-all duration-300",

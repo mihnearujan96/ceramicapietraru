@@ -4,7 +4,7 @@ import { BrandPot } from "@/components/pottery/brand-pot";
 import { DecorativeLine } from "@/components/ui/decorative-line";
 import { Container } from "@/components/ui/container";
 import { StoryChapter } from "@/components/storytelling/story-chapter";
-import { getDictionary } from "@/data/i18n/ro";
+import { useDictionary } from "@/components/i18n/locale-provider";
 import { cn } from "@/lib/utils";
 import {
   motion,
@@ -14,9 +14,8 @@ import {
 } from "motion/react";
 import { useRef } from "react";
 
-const copy = getDictionary();
-
 export function RotatingPotSection() {
+  const copy = useDictionary();
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 

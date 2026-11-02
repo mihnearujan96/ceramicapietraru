@@ -4,11 +4,10 @@ import { Reveal } from "@/components/animation/reveal";
 import { BrandPot } from "@/components/pottery/brand-pot";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { getDictionary } from "@/data/i18n/ro";
-
-const copy = getDictionary();
+import { useDictionary } from "@/components/i18n/locale-provider";
 
 export function FinalCta() {
+  const copy = useDictionary();
   return (
     <section className="relative overflow-hidden bg-cream py-24 md:py-32">
       <div

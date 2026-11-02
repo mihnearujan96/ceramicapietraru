@@ -4,15 +4,15 @@ import { Container } from "@/components/ui/container";
 import { DecorativeLine } from "@/components/ui/decorative-line";
 import { getDictionary } from "@/data/i18n/ro";
 import { CONTACT } from "@/lib/contact";
+import { getLocale } from "@/lib/get-locale";
 import Image from "next/image";
 import type { ReactNode } from "react";
-
-const copy = getDictionary();
 
 const eyebrowClassName =
   "mb-4 text-xs font-medium uppercase tracking-[0.22em] text-clay";
 
-export function Atelier() {
+export async function Atelier() {
+  const copy = getDictionary(await getLocale());
   return (
     <section
       id="atelier"
@@ -28,7 +28,7 @@ export function Atelier() {
             <div className="overflow-hidden rounded-[16px] border border-border bg-warm-white">
               <Image
                 src="/images/atelier/atelier-fatada.webp"
-                alt="Atelierul Ceramica Pietraru din Horezu — clădirea în formă de vas"
+                alt={copy.atelier.imageAlt}
                 width={972}
                 height={1024}
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -60,8 +60,8 @@ export function Atelier() {
 
             <div id="contact" className="mt-10 scroll-mt-28 md:scroll-mt-36">
               <Reveal className="grid gap-5 sm:grid-cols-2">
-                <InfoBlock label={copy.atelier.address} value={CONTACT.address} />
-                <InfoBlock label={copy.atelier.hours} value={CONTACT.hours} />
+                <InfoBlock label={copy.atelier.address} value={copy.contact.address} />
+                <InfoBlock label={copy.atelier.hours} value={copy.contact.hoursValue} />
                 {CONTACT.phones.map((phone) => (
                   <InfoBlock key={phone.tel} label={copy.atelier.phone}>
                     <a

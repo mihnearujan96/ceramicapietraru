@@ -2,10 +2,10 @@ import { Reveal } from "@/components/animation/reveal";
 import { CollectionsSwipe } from "@/components/home/collections-swipe";
 import { Container } from "@/components/ui/container";
 import { getDictionary } from "@/data/i18n/ro";
+import { getLocale } from "@/lib/get-locale";
 
-const copy = getDictionary();
-
-export function HandmadeValues() {
+export async function HandmadeValues() {
+  const copy = getDictionary(await getLocale());
   return (
     <section
       id="colectii"

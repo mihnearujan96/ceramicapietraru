@@ -5,10 +5,9 @@ import { Container } from "@/components/ui/container";
 import { DecorativeLine } from "@/components/ui/decorative-line";
 import { getDictionary } from "@/data/i18n/ro";
 import { familyStoryImages as img } from "@/data/story";
+import { getLocale } from "@/lib/get-locale";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
-const copy = getDictionary();
 
 type StoryImageProps = {
   src: string;
@@ -69,7 +68,8 @@ function StoryImage({
   );
 }
 
-export function FamilyStory() {
+export async function FamilyStory() {
+  const copy = getDictionary(await getLocale());
   const [nicoleta, laurentiu] = copy.family.chapters;
   const { mischiu } = copy.family;
 
@@ -113,7 +113,8 @@ export function FamilyStory() {
             <div className="mx-auto w-full max-w-[320px] lg:sticky lg:top-28 lg:mx-0 lg:max-w-[360px]">
               <Reveal>
                 <StoryImage
-                  {...img.pietraruCostume}
+                  src={img.pietraruCostume.src}
+                  alt={copy.family.images.pietraru}
                   className="aspect-[4/5] w-full"
                   priority
                   sizes="(max-width: 1024px) 100vw, 360px"
@@ -156,7 +157,8 @@ export function FamilyStory() {
                 <div className="mt-6">
                   <div className="mb-4 w-full max-w-[220px] sm:float-right sm:mb-3 sm:ml-6 sm:max-w-[240px] md:ml-8">
                     <StoryImage
-                      {...img.nicoletaBowl}
+                      src={img.nicoletaBowl.src}
+                      alt={copy.family.images.nicoleta}
                       className="aspect-[4/5]"
                       sizes="240px"
                     />
@@ -196,7 +198,8 @@ export function FamilyStory() {
                 <div className="mt-6">
                   <div className="mb-4 w-full max-w-[220px] sm:float-left sm:mb-3 sm:mr-6 sm:max-w-[240px] md:mr-8">
                     <StoryImage
-                      {...img.laurentiuWheel}
+                      src={img.laurentiuWheel.src}
+                      alt={copy.family.images.laurentiu}
                       className="aspect-[3/4]"
                       sizes="240px"
                     />
@@ -227,7 +230,8 @@ export function FamilyStory() {
             <div className="mx-auto w-full max-w-[320px] lg:sticky lg:top-28 lg:mx-0 lg:max-w-[360px]">
               <Reveal>
                 <StoryImage
-                  {...img.mischiuCouple}
+                  src={img.mischiuCouple.src}
+                  alt={copy.family.images.mischiu}
                   className="aspect-[3/4] w-full"
                   sizes="(max-width: 1024px) 100vw, 360px"
                   imageClassName="object-[center_30%]"
@@ -256,7 +260,8 @@ export function FamilyStory() {
               <div className="mt-8 grid items-start gap-6 md:mt-10 md:grid-cols-[minmax(200px,280px)_minmax(0,1fr)] md:gap-8">
                 <Reveal>
                   <StoryImage
-                    {...img.dumitruWheel}
+                    src={img.dumitruWheel.src}
+                    alt={copy.family.images.dumitru}
                     className="aspect-[3/4] w-full"
                     sizes="(max-width: 1024px) 70vw, 280px"
                     imageClassName="object-[center_35%]"
@@ -298,7 +303,8 @@ export function FamilyStory() {
                 <div className="relative">
                   <div className="mb-4 w-full max-w-[320px] sm:float-left sm:mb-3 sm:mr-6 sm:max-w-[340px] md:mr-8 md:max-w-[380px]">
                     <StoryImage
-                      {...img.ioanaPlate}
+                      src={img.ioanaPlate.src}
+                      alt={copy.family.images.ioana}
                       className="aspect-[4/3]"
                       sizes="380px"
                     />

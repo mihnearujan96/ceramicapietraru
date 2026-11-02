@@ -2,10 +2,10 @@ import { Reveal } from "@/components/animation/reveal";
 import { Container } from "@/components/ui/container";
 import { DecorativeLine } from "@/components/ui/decorative-line";
 import { getDictionary } from "@/data/i18n/ro";
+import { getLocale } from "@/lib/get-locale";
 
-const copy = getDictionary();
-
-export function Intro() {
+export async function Intro() {
+  const copy = getDictionary(await getLocale());
   return (
     <section className="bg-cream py-20 md:bg-warm-white md:py-28" aria-labelledby="intro-title">
       <Container>

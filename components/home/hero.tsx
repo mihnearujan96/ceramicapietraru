@@ -8,14 +8,13 @@ import {
   horezuWavePath,
   horezuWaveViewBox,
 } from "@/components/ui/decorative-line";
-import { getDictionary } from "@/data/i18n/ro";
+import { useDictionary } from "@/components/i18n/locale-provider";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const copy = getDictionary();
-
 export function Hero() {
+  const copy = useDictionary();
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion() === true;
   const [entered, setEntered] = useState(reduceMotion);
@@ -140,7 +139,7 @@ export function Hero() {
             />
             <Image
               src="/images/hero/pot-building.webp"
-              alt="Atelierul Ceramica Pietraru — clădirea în formă de vas din Horezu"
+              alt={copy.hero.imageAlt}
               width={1712}
               height={1366}
               priority
@@ -250,7 +249,7 @@ export function Hero() {
         >
           <Image
             src="/images/hero/pot-building.webp"
-            alt="Atelierul Ceramica Pietraru — clădirea în formă de vas din Horezu"
+            alt={copy.hero.imageAlt}
             width={1712}
             height={1366}
             priority

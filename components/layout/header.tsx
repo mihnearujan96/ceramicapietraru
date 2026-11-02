@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/brand/logo";
 import { useCart } from "@/components/cart/cart-provider";
+import { LanguageSwitch } from "@/components/i18n/language-switch";
+import { useDictionary } from "@/components/i18n/locale-provider";
 import { mainNavigation } from "@/data/navigation";
-import { getDictionary } from "@/data/i18n/ro";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ShoppingBag } from "lucide-react";
@@ -13,9 +14,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const copy = getDictionary();
-
 export function Header() {
+  const copy = useDictionary();
   const pathname = usePathname();
   const isShopPage = pathname === "/magazin";
   const [scrolled, setScrolled] = useState(false);
@@ -66,7 +66,9 @@ export function Header() {
             scrolled ? "h-14" : "h-[5.5rem]",
           )}
         >
-          <div className="size-10" aria-hidden />
+          <div className="relative z-10 flex items-center">
+            <LanguageSwitch />
+          </div>
 
           <div className="pointer-events-auto absolute inset-y-0 left-1/2 z-0 flex -translate-x-1/2 items-center">
             <Logo
@@ -150,7 +152,7 @@ export function Header() {
 
           <nav
             className="flex items-center gap-6 xl:gap-7"
-            aria-label="Principal"
+            aria-label={copy.a11y.mainNav}
           >
             {mainNavigation.map((item) => (
               <Link
@@ -168,6 +170,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2 md:gap-3">
+            <LanguageSwitch className="mr-1" />
             <button
               type="button"
               onClick={openCart}
@@ -207,7 +210,7 @@ export function Header() {
             transition={{ duration: 0.35 }}
           >
             <Container className="flex h-full flex-col pb-10 pt-28">
-              <nav aria-label="Mobil" className="flex flex-1 flex-col gap-2">
+              <nav aria-label={copy.a11y.mobileNav} className="flex flex-1 flex-col gap-2">
                 {mainNavigation.map((item, index) => (
                   <motion.div
                     key={item.labelKey}

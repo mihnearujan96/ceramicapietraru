@@ -3,18 +3,20 @@
 import { useCart } from "@/components/cart/cart-provider";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/data/products";
-import { getDictionary } from "@/data/i18n/ro";
+import { useDictionary, useLocale } from "@/components/i18n/locale-provider";
+import { localizeProduct } from "@/data/product-copy";
 import { formatPrice } from "@/lib/utils";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
-
-const copy = getDictionary();
 
 type ProductPurchaseProps = {
   product: Product;
 };
 
 export function ProductPurchase({ product }: ProductPurchaseProps) {
+  const copy = useDictionary();
+  const locale = useLocale();
+  const localized = localizeProduct(product, locale);
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
 
@@ -28,10 +30,10 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
   return (
     <div className="lg:sticky lg:top-28">
       <p className="text-xs uppercase tracking-[0.18em] text-clay">
-        {product.category}
+        {localized.category}
       </p>
       <h1 className="heading-display mt-3 text-[clamp(2.25rem,5vw,3.75rem)]">
-        {product.name}
+        {localized.name}
       </h1>
       <p className="mt-4 text-2xl">{formatPrice(product.price, product.currency)}</p>
       <p className="mt-2 text-sm text-muted">{availabilityLabel}</p>
@@ -39,7 +41,7 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
         {copy.product.handmadeIn}
       </p>
       <p className="mt-6 text-base leading-relaxed text-muted">
-        {product.description}
+        {localized.description}
       </p>
 
       <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -51,7 +53,7 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
             <button
               type="button"
               className="inline-flex size-11 items-center justify-center"
-              aria-label="Scade cantitatea"
+              aria-label={copy.a11y.decreaseQty}
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             >
               <Minus className="size-4" />
@@ -60,7 +62,7 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
             <button
               type="button"
               className="inline-flex size-11 items-center justify-center"
-              aria-label="Crește cantitatea"
+              aria-label={copy.a11y.increaseQty}
               onClick={() => setQuantity((q) => q + 1)}
             >
               <Plus className="size-4" />
@@ -80,12 +82,12 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
       </div>
 
       <dl className="mt-10 space-y-4 border-t border-border pt-8 text-sm">
-        {product.materials ? (
+        {localized.materials ? (
           <div>
             <dt className="text-xs uppercase tracking-[0.16em] text-muted">
               {copy.product.materials}
             </dt>
-            <dd className="mt-1">{product.materials}</dd>
+            <dd className="mt-1">{localized.materials}</dd>
           </div>
         ) : null}
         {product.dimensions ? (
@@ -96,12 +98,12 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
             <dd className="mt-1">{product.dimensions}</dd>
           </div>
         ) : null}
-        {product.care ? (
+        {localized.care ? (
           <div>
             <dt className="text-xs uppercase tracking-[0.16em] text-muted">
               {copy.product.care}
             </dt>
-            <dd className="mt-1">{product.care}</dd>
+            <dd className="mt-1">{localized.care}</dd>
           </div>
         ) : null}
         <div>

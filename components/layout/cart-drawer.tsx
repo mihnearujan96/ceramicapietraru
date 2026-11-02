@@ -3,7 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/brand/logo";
 import { useCart } from "@/components/cart/cart-provider";
-import { getDictionary } from "@/data/i18n/ro";
+import { useDictionary, useLocale } from "@/components/i18n/locale-provider";
+import { localizeProduct } from "@/data/product-copy";
+import { getProductBySlug } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Minus, Plus, X } from "lucide-react";
@@ -11,9 +13,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 
-const copy = getDictionary();
-
 export function CartDrawer() {
+  const copy = useDictionary();
+  const locale = useLocale();
   const {
     items,
     isOpen,
@@ -114,7 +116,12 @@ export function CartDrawer() {
                               onClick={closeCart}
                               className="font-medium hover:text-clay"
                             >
-                              {item.name}
+                              {(() => {
+                                const product = getProductBySlug(item.slug);
+                                return product
+                                  ? localizeProduct(product, locale).name
+                                  : item.name;
+                              })()}
                             </Link>
                             <p className="mt-1 text-sm text-muted">
                               {formatPrice(item.price)}
@@ -132,7 +139,7 @@ export function CartDrawer() {
                           <button
                             type="button"
                             className="inline-flex size-10 items-center justify-center"
-                            aria-label="Scade cantitatea"
+                            aria-label={copy.a11y.decreaseQty}
                             onClick={() =>
                               updateQuantity(item.productId, item.quantity - 1)
                             }
@@ -145,7 +152,7 @@ export function CartDrawer() {
                           <button
                             type="button"
                             className="inline-flex size-10 items-center justify-center"
-                            aria-label="Crește cantitatea"
+                            aria-label={copy.a11y.increaseQty}
                             onClick={() =>
                               updateQuantity(item.productId, item.quantity + 1)
                             }

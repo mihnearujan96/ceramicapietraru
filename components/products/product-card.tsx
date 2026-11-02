@@ -3,13 +3,12 @@
 import { useCart } from "@/components/cart/cart-provider";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/data/products";
-import { getDictionary } from "@/data/i18n/ro";
+import { useDictionary, useLocale } from "@/components/i18n/locale-provider";
+import { localizeProduct } from "@/data/product-copy";
 import { cn, formatPrice } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-const copy = getDictionary();
 
 type ProductCardProps = {
   product: Product;
@@ -17,6 +16,9 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product, className }: ProductCardProps) {
+  const copy = useDictionary();
+  const locale = useLocale();
+  const localized = localizeProduct(product, locale);
   const { addItem } = useCart();
   const [hovered, setHovered] = useState(false);
   const primary = product.images[0];
@@ -35,7 +37,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
       >
         <Image
           src={activeImage}
-          alt={product.name}
+          alt={localized.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
           className="object-contain p-6 transition-transform duration-500 group-hover:scale-[1.04]"
@@ -50,14 +52,14 @@ export function ProductCard({ product, className }: ProductCardProps) {
       <div className="mt-4 flex items-start justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-[0.16em] text-muted">
-            {product.category}
+            {localized.category}
           </p>
           <h3 className="mt-1 font-medium">
             <Link
               href={`/produse/${product.slug}`}
               className="transition-colors hover:text-clay"
             >
-              {product.name}
+              {localized.name}
             </Link>
           </h3>
           <p className="mt-1 text-sm text-foreground">

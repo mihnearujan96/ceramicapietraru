@@ -2,12 +2,15 @@ import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/ui/container";
 import { footerNavigation } from "@/data/navigation";
 import { getDictionary } from "@/data/i18n/ro";
+import { getLocale } from "@/lib/get-locale";
 import Link from "next/link";
 
-const copy = getDictionary();
-
-export function Footer() {
+export async function Footer() {
+  const locale = await getLocale();
+  const copy = getDictionary(locale);
   const year = new Date().getFullYear();
+  const quoteOpen = locale === "en" ? "\u201C" : "\u201E";
+  const quoteClose = "\u201D";
 
   return (
     <footer className="relative overflow-hidden bg-charcoal text-cream">
@@ -29,7 +32,9 @@ export function Footer() {
           />
           <blockquote className="mt-6">
             <p className="heading-display text-balance text-[clamp(1.35rem,3.8vw,2.15rem)] leading-snug text-warm-white">
-              „{copy.quote.text}”
+              {quoteOpen}
+              {copy.quote.text}
+              {quoteClose}
             </p>
           </blockquote>
           <p className="mt-5 mx-auto max-w-sm text-xs leading-relaxed tracking-[0.04em] text-cream/55">
@@ -38,16 +43,18 @@ export function Footer() {
         </div>
 
         <nav
-          aria-label="Footer"
+          aria-label={copy.a11y.footer}
           className="mt-8 grid grid-cols-2 gap-x-5 gap-y-6 border-t border-white/10 pt-7 md:mt-10 md:grid-cols-3 md:gap-6 md:pt-8"
         >
           <FooterColumn
             title={copy.footer.story}
             links={footerNavigation.story}
+            labels={copy.nav}
           />
           <FooterColumn
             title={copy.footer.atelier}
             links={footerNavigation.atelier}
+            labels={copy.nav}
           />
           <div className="col-span-2 md:col-span-1">
             <p className="mb-2.5 text-[0.65rem] font-medium uppercase tracking-[0.2em] text-terracotta">
@@ -63,7 +70,7 @@ export function Footer() {
           <p>
             © {year} {copy.brand.name}
           </p>
-          <p className="tracking-[0.08em]">Horezu · România</p>
+          <p className="tracking-[0.08em]">{copy.brand.location}</p>
         </div>
       </Container>
     </footer>
@@ -73,9 +80,17 @@ export function Footer() {
 function FooterColumn({
   title,
   links,
+  labels,
 }: {
   title: string;
-  links: readonly { href: string; label: string }[];
+  links: readonly { href: string; labelKey: "story" | "collections" | "atelier" | "contact" | "shop" }[];
+  labels: {
+    story: string;
+    collections: string;
+    atelier: string;
+    contact: string;
+    shop: string;
+  };
 }) {
   return (
     <div>
@@ -84,12 +99,12 @@ function FooterColumn({
       </p>
       <ul className="space-y-1.5 text-sm text-cream/75">
         {links.map((link) => (
-          <li key={link.href + link.label}>
+          <li key={link.href + link.labelKey}>
             <Link
               href={link.href}
               className="transition-colors hover:text-warm-white"
             >
-              {link.label}
+              {labels[link.labelKey]}
             </Link>
           </li>
         ))}

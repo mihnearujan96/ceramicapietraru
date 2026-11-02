@@ -1,12 +1,10 @@
 "use client";
 
+import { useDictionary } from "@/components/i18n/locale-provider";
 import { cn } from "@/lib/utils";
-import { getDictionary } from "@/data/i18n/ro";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { MouseEvent } from "react";
-
-const copy = getDictionary();
 
 // Bump when regenerating public/images/brand/*.svg
 const LOGO_V = "3";
@@ -35,6 +33,7 @@ export function Logo({
   priority = false,
   onClick,
 }: LogoProps) {
+  const copy = useDictionary();
   const pathname = usePathname();
   const src = variant === "light" ? LOGO_SRC.light : LOGO_SRC.default;
   // Original artboard aspect ~1011×829

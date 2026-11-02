@@ -1,7 +1,8 @@
 "use client";
 
+import { useDictionary, useLocale } from "@/components/i18n/locale-provider";
+import { localizeProduct } from "@/data/product-copy";
 import { products } from "@/data/products";
-import { getDictionary } from "@/data/i18n/ro";
 import { formatPrice } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { X } from "lucide-react";
@@ -9,14 +10,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-const copy = getDictionary();
-
 type SearchDialogProps = {
   open: boolean;
   onClose: () => void;
 };
 
 export function SearchDialog({ open, onClose }: SearchDialogProps) {
+  const copy = useDictionary();
+  const locale = useLocale();
   const [query, setQuery] = useState("");
   const reduceMotion = useReducedMotion();
 
@@ -35,15 +36,16 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
   }, [open, handleClose]);
 
   const results = useMemo(() => {
+    const localized = products.map((product) => localizeProduct(product, locale));
     const q = query.trim().toLowerCase();
-    if (!q) return products.slice(0, 6);
-    return products.filter(
+    if (!q) return localized.slice(0, 6);
+    return localized.filter(
       (product) =>
         product.name.toLowerCase().includes(q) ||
         product.category.toLowerCase().includes(q) ||
         product.description.toLowerCase().includes(q),
     );
-  }, [query]);
+  }, [query, locale]);
 
   return (
     <AnimatePresence>

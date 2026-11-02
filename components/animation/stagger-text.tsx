@@ -22,26 +22,27 @@ export function StaggerText({
   const lines = text.split("\n");
 
   if (reduceMotion) {
-    return <Tag className={className}>{text}</Tag>;
+    return (
+      <Tag className={cn("whitespace-pre-line", className)}>{text}</Tag>
+    );
   }
 
   return (
-    <Tag className={cn("overflow-hidden", className)}>
+    <Tag className={cn("flex flex-col", className)}>
       {lines.map((line, index) => (
-        <span key={`${line}-${index}`} className="block overflow-hidden">
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, y: "100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.85,
-              ease: [0.22, 1, 0.36, 1],
-              delay: delay + index * stagger,
-            }}
-          >
-            {line}
-          </motion.span>
-        </span>
+        <motion.span
+          key={`${line}-${index}`}
+          className="block overflow-visible pb-[0.22em] leading-none"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.85,
+            ease: [0.22, 1, 0.36, 1],
+            delay: delay + index * stagger,
+          }}
+        >
+          {line}
+        </motion.span>
       ))}
     </Tag>
   );

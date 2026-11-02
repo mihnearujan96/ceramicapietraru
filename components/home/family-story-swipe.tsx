@@ -1,15 +1,14 @@
 "use client";
 
-import { familyStoryImages as img } from "@/data/story";
+import { useDictionary } from "@/components/i18n/locale-provider";
 import { getDictionary } from "@/data/i18n/ro";
+import { familyStoryImages as img } from "@/data/story";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-
-const copy = getDictionary();
 
 type Slide = {
   id: string;
@@ -21,69 +20,99 @@ type Slide = {
   imageClassName?: string;
 };
 
-function buildSlides(): Slide[] {
+function buildSlides(copy: ReturnType<typeof getDictionary>): Slide[] {
   const [nicoleta, laurentiu] = copy.family.chapters;
   const { mischiu } = copy.family;
 
   return [
     {
       id: "pietraru",
-      label: "Atelierul nostru",
+      label: copy.family.slides.ourAtelier,
       title: copy.family.pietraruTitle,
       caption: copy.family.pietraruCaption,
       paragraphs: [copy.family.pietraruIntro],
-      image: { ...img.pietraruCostume, width: 768, height: 1024 },
+      image: {
+        src: img.pietraruCostume.src,
+        alt: copy.family.images.pietraru,
+        width: 768,
+        height: 1024,
+      },
       imageClassName: "object-top",
     },
     {
       id: "nicoleta",
       label: nicoleta.title,
-      title: "Păstrătoarea meșteșugului",
+      title: copy.family.slides.keeper,
       caption: nicoleta.caption,
       paragraphs: nicoleta.paragraphs,
-      image: { ...img.nicoletaBowl, width: 819, height: 1024 },
+      image: {
+        src: img.nicoletaBowl.src,
+        alt: copy.family.images.nicoleta,
+        width: 819,
+        height: 1024,
+      },
     },
     {
       id: "laurentiu",
       label: laurentiu.title,
-      title: "Alături, în atelier",
+      title: copy.family.slides.beside,
       caption: laurentiu.caption,
       paragraphs: laurentiu.paragraphs,
-      image: { ...img.laurentiuWheel, width: 768, height: 1024 },
+      image: {
+        src: img.laurentiuWheel.src,
+        alt: copy.family.images.laurentiu,
+        width: 768,
+        height: 1024,
+      },
     },
     {
       id: "mischiu",
-      label: "Generația întâi",
+      label: copy.family.slides.firstGeneration,
       title: mischiu.title,
       caption: mischiu.caption,
       paragraphs: [mischiu.intro],
-      image: { ...img.mischiuCouple, width: 768, height: 1024 },
+      image: {
+        src: img.mischiuCouple.src,
+        alt: copy.family.images.mischiu,
+        width: 768,
+        height: 1024,
+      },
       imageClassName: "object-[center_30%]",
     },
     {
       id: "dumitru",
       label: "Dumitru Mischiu",
-      title: "La roată, din copilărie",
+      title: copy.family.slides.atTheWheel,
       caption: mischiu.dumitru.caption,
       paragraphs: mischiu.dumitru.quotes,
-      image: { ...img.dumitruWheel, width: 768, height: 1024 },
+      image: {
+        src: img.dumitruWheel.src,
+        alt: copy.family.images.dumitru,
+        width: 768,
+        height: 1024,
+      },
       imageClassName: "object-[center_35%]",
     },
     {
       id: "ioana",
       label: "Ioana Mischiu",
-      title: "Ursită pentru meșteșug",
+      title: copy.family.slides.destined,
       caption: mischiu.ioana.caption,
       paragraphs: mischiu.ioana.quotes,
-      image: { ...img.ioanaPlate, width: 1024, height: 768 },
+      image: {
+        src: img.ioanaPlate.src,
+        alt: copy.family.images.ioana,
+        width: 1024,
+        height: 768,
+      },
       imageClassName: "object-right",
     },
   ];
 }
 
-const slides = buildSlides();
-
 export function FamilyStorySwipe() {
+  const copy = useDictionary();
+  const slides = useMemo(() => buildSlides(copy), [copy]);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [active, setActive] = useState(0);
@@ -162,7 +191,7 @@ export function FamilyStorySwipe() {
           {String(slides.length).padStart(2, "0")}
         </p>
         <p className="text-xs tracking-[0.08em] text-muted">
-          {active === 0 ? "Glisează pentru poveste →" : slides[active]?.label}
+          {active === 0 ? copy.family.swipeHint : slides[active]?.label}
         </p>
       </div>
 
@@ -180,7 +209,7 @@ export function FamilyStorySwipe() {
             key={slide.id}
             data-slide
             data-index={index}
-            aria-label={`${index + 1} din ${slides.length}: ${slide.label}`}
+            aria-label={`${index + 1} ${copy.a11y.of} ${slides.length}: ${slide.label}`}
             className="flex w-[min(82vw,22rem)] shrink-0 snap-center sm:snap-start"
           >
             <button
@@ -217,7 +246,7 @@ export function FamilyStorySwipe() {
                   {slide.paragraphs[0]}
                 </span>
                 <span className="mt-auto shrink-0 pt-2 text-xs font-medium uppercase tracking-[0.16em] text-clay">
-                  Citește povestea
+                  {copy.family.readStory}
                 </span>
               </div>
             </button>
@@ -229,7 +258,7 @@ export function FamilyStorySwipe() {
       <div
         className="mt-5 flex items-center justify-center gap-2"
         role="tablist"
-        aria-label="Capitole"
+        aria-label={copy.a11y.chapters}
       >
         {slides.map((slide, index) => (
           <button
@@ -237,7 +266,7 @@ export function FamilyStorySwipe() {
             type="button"
             role="tab"
             aria-selected={active === index}
-            aria-label={`Mergi la ${slide.label}`}
+            aria-label={`${copy.a11y.goTo} ${slide.label}`}
             onClick={() => scrollTo(index)}
             className={cn(
               "h-1.5 rounded-full transition-all duration-300",
@@ -294,7 +323,7 @@ export function FamilyStorySwipe() {
                         type="button"
                         onClick={() => setOpenId(null)}
                         className="absolute right-3 top-3 inline-flex size-11 items-center justify-center rounded-full bg-warm-white/95 text-charcoal shadow-sm"
-                        aria-label="Închide povestea"
+                        aria-label={copy.a11y.closeStory}
                       >
                         <X className="size-5" />
                       </button>
